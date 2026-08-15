@@ -216,7 +216,7 @@ function BookDetails() {
               )}
 
               <p className="book-details-motto">
-                Carpe diem.
+                “No matter what anybody tells you, words and ideas can change the world.”
               </p>
             </div>
           </div>
