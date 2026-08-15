@@ -677,6 +677,32 @@ img {
 }
 
 /* ========================================
+   BOOK DETAILS — CONTENT
+======================================== */
+
+.book-details-cover img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.book-details-description {
+  max-width: 700px;
+
+  color: var(--text-secondary);
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+
+  line-height: 1.65;
+}
+
+.book-details-subjects {
+  margin-top: 35px;
+}
+
+/* ========================================
    LOADING / ERROR / EMPTY STATES
 ======================================== */
 
