@@ -4,19 +4,29 @@ import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import BookGrid from "../components/BookGrid";
 
+const BOOKS_PER_PAGE = 24;
+
 function SearchResults() {
   const [searchParams] = useSearchParams();
 
   const query = searchParams.get("q");
 
   const [books, setBooks] = useState([]);
+  const [totalResults, setTotalResults] = useState(0);
+
+  const [page, setPage] = useState(1);
+
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+
   const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchBooks() {
       if (!query) {
         setBooks([]);
+        setTotalResults(0);
+        setPage(1);
         return;
       }
 
@@ -27,7 +37,7 @@ function SearchResults() {
         const response = await fetch(
           `https://openlibrary.org/search.json?q=${encodeURIComponent(
             query
-          )}&limit=24`
+          )}&limit=${BOOKS_PER_PAGE}&page=1`
         );
 
         if (!response.ok) {
@@ -36,11 +46,14 @@ function SearchResults() {
 
         const data = await response.json();
 
-        const cleanedBooks = data.docs
-          .filter((book) => book.title)
-          .slice(0, 24);
+        setTotalResults(data.numFound || 0);
+
+        const cleanedBooks = data.docs.filter(
+          (book) => book.title
+        );
 
         setBooks(cleanedBooks);
+        setPage(1);
       } catch (error) {
         console.error(error);
 
@@ -49,6 +62,7 @@ function SearchResults() {
         );
 
         setBooks([]);
+        setTotalResults(0);
       } finally {
         setLoading(false);
       }
@@ -56,6 +70,53 @@ function SearchResults() {
 
     fetchBooks();
   }, [query]);
+
+  async function handleLoadMore() {
+    if (!query || loadingMore) {
+      return;
+    }
+
+    const nextPage = page + 1;
+
+    setLoadingMore(true);
+    setError("");
+
+    try {
+      const response = await fetch(
+        `https://openlibrary.org/search.json?q=${encodeURIComponent(
+          query
+        )}&limit=${BOOKS_PER_PAGE}&page=${nextPage}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to load more books.");
+      }
+
+      const data = await response.json();
+
+      const newBooks = data.docs.filter(
+        (book) => book.title
+      );
+
+      setBooks((currentBooks) => [
+        ...currentBooks,
+        ...newBooks,
+      ]);
+
+      setPage(nextPage);
+    } catch (error) {
+      console.error(error);
+
+      setError(
+        "We couldn't load more books from the archives."
+      );
+    } finally {
+      setLoadingMore(false);
+    }
+  }
+
+  const hasMoreBooks =
+    books.length < totalResults;
 
   return (
     <div className="app">
@@ -80,13 +141,14 @@ function SearchResults() {
 
             {!loading && !error && books.length > 0 && (
               <span>
-                {books.length} books displayed
+                {books.length} displayed · {totalResults} matches
               </span>
             )}
           </div>
         </section>
 
         <section className="archive">
+          {/* Loading */}
           {loading && (
             <div className="status-message">
               <p>Searching the archives...</p>
@@ -97,7 +159,8 @@ function SearchResults() {
             </div>
           )}
 
-          {error && (
+          {/* Error */}
+          {error && books.length === 0 && (
             <div className="status-message error">
               <p>{error}</p>
 
@@ -107,18 +170,50 @@ function SearchResults() {
             </div>
           )}
 
-          {!loading && !error && books.length === 0 && (
-            <div className="status-message">
-              <p>No books found.</p>
+          {/* Empty */}
+          {!loading &&
+            !error &&
+            books.length === 0 && (
+              <div className="status-message">
+                <p>No books found.</p>
 
-              <span>
-                Perhaps you haven't found the right words yet.
-              </span>
-            </div>
-          )}
+                <span>
+                  Perhaps you haven't found the right words yet.
+                </span>
+              </div>
+            )}
 
-          {!loading && !error && books.length > 0 && (
-            <BookGrid books={books} />
+          {/* Results */}
+          {!loading && books.length > 0 && (
+            <>
+              <BookGrid books={books} />
+
+              {hasMoreBooks && (
+                <div className="load-more-container">
+                  <button
+                    className="load-more-button"
+                    onClick={handleLoadMore}
+                    disabled={loadingMore}
+                  >
+                    {loadingMore
+                      ? "Opening more records..."
+                      : "Load More Books"}
+                  </button>
+
+                  {error && (
+                    <p className="load-more-error">
+                      {error}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {!hasMoreBooks && (
+                <p className="archive-end">
+                  You have reached the end of the archive.
+                </p>
+              )}
+            </>
           )}
         </section>
       </main>

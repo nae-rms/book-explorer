@@ -716,6 +716,77 @@ img {
 }
 
 /* ========================================
+   LOAD MORE
+======================================== */
+
+.load-more-container {
+  margin-top: 70px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.load-more-button {
+  min-width: 190px;
+  height: 48px;
+
+  padding: 0 24px;
+
+  border: 1px solid var(--border);
+
+  background: transparent;
+  color: var(--text-primary);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.load-more-button:hover:not(:disabled) {
+  border-color: var(--accent-gold);
+
+  background: var(--bg-secondary);
+
+  color: var(--accent-gold);
+}
+
+.load-more-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+}
+
+.load-more-error {
+  margin-top: 14px;
+
+  color: #c26d70;
+
+  font-size: 0.75rem;
+}
+
+.archive-end {
+  margin-top: 70px;
+
+  color: var(--text-muted);
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  font-style: italic;
+
+  text-align: center;
+}
+
+/* ========================================
    LOADING / ERROR / EMPTY STATES
 ======================================== */
 
