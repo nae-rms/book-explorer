@@ -530,6 +530,151 @@ img {
   letter-spacing: 0.1em;
 }
 
+/* ========================================
+   BOOK DETAILS
+======================================== */
+
+.book-details-page {
+  min-height: calc(100vh - 80px);
+}
+
+.book-details-container {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 55px 6% 120px;
+}
+
+.book-details {
+  margin-top: 45px;
+
+  display: grid;
+  grid-template-columns: 300px 1fr;
+
+  gap: 70px;
+
+  align-items: start;
+}
+
+.book-details-cover {
+  width: 100%;
+
+  aspect-ratio: 2 / 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      #332f28,
+      #201e1a
+    );
+
+  color: var(--text-muted);
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.book-details-cover span {
+  font-size: 0.7rem;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.book-details-content {
+  padding-top: 15px;
+}
+
+.book-details-content h1 {
+  margin-top: 12px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 500;
+
+  line-height: 0.9;
+}
+
+.book-details-author {
+  margin-top: 18px;
+
+  color: var(--text-secondary);
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+}
+
+.book-details-meta {
+  margin-top: 28px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  color: var(--text-muted);
+
+  font-size: 0.75rem;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.book-details-divider {
+  width: 100%;
+  height: 1px;
+
+  margin: 35px 0;
+
+  background: var(--border);
+}
+
+.book-details-content h2 {
+  margin-bottom: 15px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.subject-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.subject-tags span {
+  padding: 7px 11px;
+
+  border: 1px solid var(--border);
+
+  color: var(--text-secondary);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.book-details-motto {
+  margin-top: 55px;
+
+  color: var(--text-muted);
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  font-style: italic;
+}
 
 /* ========================================
    LOADING / ERROR / EMPTY STATES

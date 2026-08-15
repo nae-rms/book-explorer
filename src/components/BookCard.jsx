@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function BookCard({ book }) {
   const coverId = book.cover_i;
 
@@ -5,13 +7,17 @@ function BookCard({ book }) {
     ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
     : null;
 
-  const author = book.author_name?.[0] || "Unknown author";
+  const author =
+    book.author_name?.[0] || "Unknown author";
 
   const publishYear =
     book.first_publish_year || "Year unknown";
 
   return (
-    <article className="book-card">
+    <Link
+      to={`/book/${encodeURIComponent(book.key)}`}
+      className="book-card"
+    >
       <div className="book-cover">
         {coverUrl ? (
           <img
@@ -30,7 +36,7 @@ function BookCard({ book }) {
 
         <span>{publishYear}</span>
       </div>
-    </article>
+    </Link>
   );
 }
 
