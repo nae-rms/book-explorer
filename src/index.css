@@ -1,111 +1,610 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ========================================
+   DESIGN SYSTEM
+======================================== */
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --bg-primary: #171614;
+  --bg-secondary: #211f1b;
+  --bg-card: #28251f;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --text-primary: #e8dfcc;
+  --text-secondary: #a9a092;
+  --text-muted: #716a60;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  --accent-red: #8b1e24;
+  --accent-gold: #b59a62;
+
+  --border: #3a352d;
+
+  font-family: "Inter", sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* ========================================
+   RESET
+======================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-#root {
-  width: 1126px;
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
   max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* ========================================
+   NAVBAR
+======================================== */
+
+.navbar {
+  height: 80px;
+  padding: 0 4%;
+
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid var(--border);
+
+  background: rgba(23, 22, 20, 0.96);
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+
+  font-size: 0.7rem;
   font-weight: 500;
-  color: var(--text-h);
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+.nav-links a {
+  position: relative;
+
+  color: var(--text-secondary);
+
+  transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--accent-red);
+
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+/* ========================================
+   HOME PAGE
+======================================== */
+
+.home {
+  min-height: calc(100vh - 80px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 16px;
+
+  color: var(--accent-gold);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  font-weight: 500;
+
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+
+  text-transform: uppercase;
+}
+
+.hero-description {
+  max-width: 520px;
+
+  margin: 30px auto 42px;
+
+  color: var(--text-secondary);
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   SEARCH BAR
+======================================== */
+
+.search-bar {
+  width: 100%;
+  max-width: 700px;
+  height: 58px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid var(--border);
+
+  background: var(--bg-secondary);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-bar:focus-within {
+  border-color: var(--accent-gold);
+
+  box-shadow:
+    0 0 0 1px rgba(181, 154, 98, 0.15);
+}
+
+.search-bar svg {
+  flex-shrink: 0;
+
+  margin-left: 18px;
+
+  color: var(--text-muted);
+}
+
+.search-bar input {
+  flex: 1;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 16px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text-primary);
+
+  font-size: 0.85rem;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-bar button {
+  height: 100%;
+
+  padding: 0 28px;
+
+  border: none;
+
+  background: var(--accent-red);
+  color: var(--text-primary);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.search-bar button:hover {
+  background: #a0252c;
+}
+
+.search-bar button:active {
+  transform: scale(0.98);
+}
+
+
+/* ========================================
+   RESULTS PAGE
+   Used later by SearchResults.jsx
+======================================== */
+
+.results-page {
+  min-height: calc(100vh - 80px);
+}
+
+.results-header {
+  max-width: 1500px;
+
+  margin: 0 auto;
+  padding: 80px 6% 40px;
+}
+
+.results-header h1 {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 4rem;
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+.results-count {
+  margin-top: 12px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.85rem;
+}
+
+
+/* ========================================
+   ARCHIVE / RESULTS GRID
+======================================== */
+
+.archive {
+  max-width: 1500px;
+
+  margin: 0 auto;
+  padding: 40px 6% 120px;
+
+  border-top: 1px solid var(--border);
+}
+
+.book-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(180px, 1fr));
+
+  gap: 36px;
+}
+
+
+/* ========================================
+   BOOK CARD
+======================================== */
+
+.book-card {
+  min-width: 0;
+
+  padding: 20px;
+
+  border: 1px solid var(--border);
+
+  background: var(--bg-card);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+
+  border-color: var(--accent-gold);
+
+  background: #2c2923;
+}
+
+
+/* ========================================
+   BOOK COVER
+======================================== */
+
+.book-cover {
+  width: min(100%, 170px);
+
+  aspect-ratio: 2 / 3;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      #332f28,
+      #201e1a
+    );
+
+  color: var(--text-muted);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.book-card:hover .book-cover {
+  transform: translateY(-3px);
+
+  border-color: rgba(181, 154, 98, 0.6);
+}
+
+.book-cover span {
+  padding: 0 10px;
+
+  text-align: center;
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   BOOK INFO
+======================================== */
+
+.book-info {
+  padding-top: 18px;
+
+  text-align: center;
+}
+
+.book-info h3 {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.35rem;
+  font-weight: 600;
+
+  line-height: 1.15;
+}
+
+.book-info p {
+  margin-top: 6px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.book-info span {
+  display: block;
+
+  margin-top: 7px;
+
+  color: var(--accent-gold);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .book-grid {
+    grid-template-columns:
+      repeat(3, minmax(180px, 1fr));
+  }
+
+  .hero {
+    padding-top: 70px;
+    padding-bottom: 90px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.8rem, 9vw, 6rem);
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+  .navbar {
+    height: auto;
+
+    padding: 20px 6%;
+
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .hero {
+    padding: 60px 20px 80px;
+  }
+
+  .hero h1 {
+    font-size: 3.6rem;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+  }
+
+  .search-bar {
+    height: auto;
+
+    flex-wrap: wrap;
+  }
+
+  .search-bar input {
+    height: 56px;
+  }
+
+  .search-bar button {
+    width: 100%;
+    height: 50px;
+  }
+
+  .results-header {
+    padding: 60px 20px 35px;
+  }
+
+  .results-header h1 {
+    font-size: 3rem;
+  }
+
+  .archive {
+    padding:
+      35px 20px
+      90px;
+  }
+
+  .book-grid {
+    grid-template-columns:
+      repeat(2, minmax(140px, 1fr));
+
+    gap: 20px;
+  }
+
+  .book-card {
+    padding: 14px;
+  }
+
+  .book-cover {
+    width: min(100%, 150px);
   }
 }
-p {
-  margin: 0;
-}
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 430px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+
+    font-size: 0.65rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .book-grid {
+    gap: 14px;
+  }
+
+  .book-card {
+    padding: 10px;
+  }
+
+  .book-info h3 {
+    font-size: 1.15rem;
+  }
 }
