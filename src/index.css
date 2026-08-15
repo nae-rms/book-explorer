@@ -483,7 +483,7 @@ img {
 
 
 /* =========================================================
-   HOME — INTRODUCTION
+   HOME — ARCHIVE INTRODUCTION
 ========================================================= */
 
 .archive-introduction {
@@ -499,6 +499,15 @@ img {
   gap: 90px;
 
   align-items: center;
+}
+
+
+/* =========================
+   INTRO VISUAL
+========================= */
+
+.intro-visual {
+  min-width: 0;
 }
 
 .intro-image {
@@ -565,6 +574,36 @@ img {
 
   transform: scale(1.015);
 }
+
+
+/* =========================
+   IMAGE CAPTION
+========================= */
+
+.image-caption {
+  margin-top: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  color: var(--text-muted);
+
+  font-size: 0.55rem;
+  font-weight: 500;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.image-caption span:last-child {
+  text-align: right;
+}
+
+
+/* =========================
+   INTRO CONTENT
+========================= */
 
 .intro-content {
   max-width: 520px;
@@ -1460,26 +1499,29 @@ img {
     height: 50px;
   }
 
-  .archive-introduction,
-  .archive-philosophy {
-    grid-template-columns: 1fr;
+  .archive-introduction {
+  grid-template-columns: 1fr;
 
-    gap: 55px;
+  gap: 45px;
 
-    padding:
-      90px 20px;
-  }
+  padding:
+    90px 20px;
+}
 
-  .archive-philosophy {
-    display: flex;
+.image-caption {
+  flex-direction: column;
+  gap: 5px;
 
-    flex-direction: column-reverse;
-  }
+  line-height: 1.6;
+}
 
-  .intro-content,
-  .philosophy-content {
-    max-width: none;
-  }
+.image-caption span:last-child {
+  text-align: left;
+}
+
+.intro-content {
+  max-width: none;
+}
 
   .intro-image,
   .philosophy-image {
@@ -1561,5 +1603,157 @@ img {
 
   .book-details-content h1 {
     font-size: 3.5rem;
+  }
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+
+  background: #13120f;
+}
+
+.footer-inner {
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding: 38px 6% 30px;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+
+  gap: 50px;
+}
+
+.footer-brand {
+  max-width: 340px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--text-primary);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.15rem;
+  font-weight: 600;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.footer-mark {
+  color: var(--accent-gold);
+
+  font-size: 1rem;
+}
+
+.footer-brand p {
+  margin-top: 8px;
+
+  color: var(--text-muted);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 0.9rem;
+
+  line-height: 1.5;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  color: var(--text-muted);
+
+  font-size: 0.68rem;
+
+  line-height: 1.4;
+}
+
+.footer-heading {
+  margin-bottom: 4px;
+
+  color: var(--accent-gold);
+
+  font-size: 0.58rem;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.footer-column a,
+.footer-column span:not(.footer-heading) {
+  color: var(--text-muted);
+
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: var(--text-primary);
+}
+
+.footer-bottom {
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding:
+    12px 6%
+    18px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  border-top: 1px solid rgba(58, 53, 45, 0.65);
+
+  color: #625d55;
+
+  font-size: 0.52rem;
+  font-weight: 500;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   FOOTER — MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    padding:
+      35px 20px
+      30px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    padding:
+      12px 20px
+      18px;
+
+    flex-direction: column;
+
+    gap: 6px;
   }
 }

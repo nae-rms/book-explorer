@@ -29,7 +29,7 @@ function Home() {
             <div className="hero-institution">
               <span>WELTON ACADEMY</span>
               <span>·</span>
-              <span>LITERARY ARCHIVES</span>
+              <span>PRIVATE COLLECTION</span>
             </div>
 
             <div className="hero-icon">
@@ -37,7 +37,7 @@ function Home() {
             </div>
 
             <p className="eyebrow">
-              THE LITERARY ARCHIVE
+              WORDS WORTH REMEMBERING
             </p>
 
             <h1>
@@ -47,8 +47,8 @@ function Home() {
             </h1>
 
             <p className="hero-description">
-              A place for those who seek books worth
-              remembering.
+              A place for those who seek stories worth
+              keeping.
             </p>
 
             <SearchBar />
@@ -59,13 +59,22 @@ function Home() {
           </div>
         </section>
 
-        {/* INTRODUCTION */}
+        {/* ARCHIVE INTRODUCTION */}
         <section className="archive-introduction">
-          <div className="intro-image">
-            <img
-              src={bedroomWriting}
-              alt="Students writing together in a dorm room"
-            />
+          <div className="intro-visual">
+            <div className="intro-image">
+              <img
+                src={bedroomWriting}
+                alt="Students writing together in a dorm room"
+              />
+            </div>
+
+            <div className="image-caption">
+              <span>ARCHIVE PHOTOGRAPH 02</span>
+              <span>
+                WELTON ACADEMY · PRIVATE COLLECTION
+              </span>
+            </div>
           </div>
 
           <div className="intro-content">
@@ -84,10 +93,9 @@ function Home() {
             </div>
 
             <p>
-              Search across the literary archive for
-              titles, authors, and works that have
-              stayed with readers long after the final
-              page.
+              Search across the collection for titles,
+              authors, and works that have stayed with
+              readers long after the final page.
             </p>
 
             <p className="intro-motto">
@@ -106,10 +114,7 @@ function Home() {
           <div className="cinematic-overlay" />
 
           <div className="cinematic-content">
-            <Quote
-              size={24}
-              strokeWidth={1}
-            />
+            <Quote size={24} strokeWidth={1} />
 
             <p>
               "O Captain! My Captain!"
@@ -153,6 +158,67 @@ function Home() {
           </div>
         </section>
       </main>
+
+      {/* FOOTER */}
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <div className="footer-logo">
+              <span
+                className="footer-mark"
+                aria-hidden="true"
+              >
+                ✦
+              </span>
+
+              <span>Dead Poets Archives</span>
+            </div>
+
+            <p>
+              A literary archive for books worth
+              remembering.
+            </p>
+          </div>
+
+          <div className="footer-column">
+            <span className="footer-heading">
+              ARCHIVE
+            </span>
+
+            <a href="/">
+              Search
+            </a>
+
+            <a href="/search">
+              Collection
+            </a>
+          </div>
+
+          <div className="footer-column">
+            <span className="footer-heading">
+              ABOUT
+            </span>
+
+            <span>
+              Welton Academy
+            </span>
+
+            <span>
+              Private Collection
+            </span>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>
+            BOOK DATA · OPEN LIBRARY
+          </span>
+
+          <span>
+            CARPE DIEM
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }
