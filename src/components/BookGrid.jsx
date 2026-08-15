@@ -1,12 +1,14 @@
 import BookCard from "./BookCard";
 
-function BookGrid() {
+function BookGrid({ books }) {
   return (
     <div className="book-grid">
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
+      {books.map((book) => (
+        <BookCard
+          key={book.key}
+          book={book}
+        />
+      ))}
     </div>
   );
 }
