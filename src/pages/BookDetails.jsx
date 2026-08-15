@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useParams,
+} from "react-router-dom";
+
 import Navbar from "../components/Navbar";
 
 function BookDetails() {
   const { id } = useParams();
+  const location = useLocation();
+
+  const searchBook = location.state;
 
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -22,7 +30,9 @@ function BookDetails() {
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch book details.");
+          throw new Error(
+            "Failed to fetch book details."
+          );
         }
 
         const data = await response.json();
@@ -30,6 +40,7 @@ function BookDetails() {
         setBook(data);
       } catch (error) {
         console.error(error);
+
         setError(
           "We couldn't retrieve this record from the archives."
         );
@@ -49,8 +60,9 @@ function BookDetails() {
         <main className="book-details-page">
           <div className="status-message">
             <p>Opening the archive record...</p>
+
             <span>
-              Take your time. Some books deserve a slower reading.
+              Some books deserve a slower reading.
             </span>
           </div>
         </main>
@@ -69,7 +81,10 @@ function BookDetails() {
               {error || "Book not found."}
             </p>
 
-            <Link to="/search" className="back-link">
+            <Link
+              to="/search"
+              className="back-link"
+            >
               ← Return to the archive
             </Link>
           </div>
@@ -78,14 +93,38 @@ function BookDetails() {
     );
   }
 
-  const title = book.title || "Untitled";
+  const title =
+    searchBook?.title ||
+    book.title ||
+    "Untitled";
+
+  const author =
+    searchBook?.author ||
+    "Unknown author";
+
+  const publishYear =
+    searchBook?.publishYear ||
+    "Year unknown";
+
+  const editionCount =
+    searchBook?.editionCount ||
+    0;
+
+  const coverId =
+    searchBook?.coverId ||
+    book.covers?.[0];
+
+  const coverUrl = coverId
+    ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
+    : null;
 
   const description =
     typeof book.description === "string"
       ? book.description
       : book.description?.value || "";
 
-  const subjects = book.subjects?.slice(0, 12) || [];
+  const subjects =
+    book.subjects?.slice(0, 12) || [];
 
   return (
     <div className="app">
@@ -93,15 +132,18 @@ function BookDetails() {
 
       <main className="book-details-page">
         <div className="book-details-container">
-          <Link to="/search" className="back-link">
+          <Link
+            to="/search"
+            className="back-link"
+          >
             ← Return to the archive
           </Link>
 
           <div className="book-details">
             <div className="book-details-cover">
-              {book.covers?.[0] ? (
+              {coverUrl ? (
                 <img
-                  src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`}
+                  src={coverUrl}
                   alt={`Cover of ${title}`}
                 />
               ) : (
@@ -117,8 +159,18 @@ function BookDetails() {
               <h1>{title}</h1>
 
               <p className="book-details-author">
-                Open Library record
+                {author}
               </p>
+
+              <div className="book-details-meta">
+                <span>
+                  First published {publishYear}
+                </span>
+
+                <span>
+                  {editionCount} editions
+                </span>
+              </div>
 
               <div className="book-details-divider" />
 

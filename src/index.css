@@ -619,14 +619,27 @@ img {
 
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 12px 28px;
 
   color: var(--text-muted);
 
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.book-details-meta span {
+  position: relative;
+}
+
+.book-details-meta span:not(:last-child)::after {
+  content: "·";
+
+  position: absolute;
+  right: -17px;
+
+  color: var(--accent-gold);
 }
 
 .book-details-divider {

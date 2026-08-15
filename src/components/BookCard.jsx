@@ -13,9 +13,19 @@ function BookCard({ book }) {
   const publishYear =
     book.first_publish_year || "Year unknown";
 
+  const editionCount =
+    book.edition_count || 0;
+
   return (
     <Link
       to={`/book/${encodeURIComponent(book.key)}`}
+      state={{
+        title: book.title,
+        author,
+        publishYear,
+        editionCount,
+        coverId,
+      }}
       className="book-card"
     >
       <div className="book-cover">
