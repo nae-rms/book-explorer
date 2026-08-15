@@ -82,7 +82,13 @@ function BookDetails() {
             </p>
 
             <Link
-              to="/search"
+              to={
+                searchBook?.searchQuery
+                  ? `/search?q=${encodeURIComponent(
+                      searchBook.searchQuery
+                    )}`
+                  : "/"
+              }
               className="back-link"
             >
               ← Return to the archive
@@ -126,6 +132,12 @@ function BookDetails() {
   const subjects =
     book.subjects?.slice(0, 12) || [];
 
+  const returnToArchive = searchBook?.searchQuery
+    ? `/search?q=${encodeURIComponent(
+        searchBook.searchQuery
+      )}`
+    : "/";
+
   return (
     <div className="app">
       <Navbar />
@@ -133,7 +145,7 @@ function BookDetails() {
       <main className="book-details-page">
         <div className="book-details-container">
           <Link
-            to="/search"
+            to={returnToArchive}
             className="back-link"
           >
             ← Return to the archive
@@ -199,7 +211,7 @@ function BookDetails() {
               )}
 
               <p className="book-details-motto">
-                "“No matter what anybody tells you, words and ideas can change the world.”"
+                Carpe diem.
               </p>
             </div>
           </div>

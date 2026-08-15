@@ -10,6 +10,7 @@ function SearchResults() {
   const [searchParams] = useSearchParams();
 
   const query = searchParams.get("q");
+  const hasQuery = Boolean(query?.trim());
 
   const [books, setBooks] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
@@ -23,10 +24,11 @@ function SearchResults() {
 
   useEffect(() => {
     async function fetchBooks() {
-      if (!query) {
+      if (!hasQuery) {
         setBooks([]);
         setTotalResults(0);
         setPage(1);
+        setError("");
         return;
       }
 
@@ -69,7 +71,7 @@ function SearchResults() {
     }
 
     fetchBooks();
-  }, [query]);
+  }, [query, hasQuery]);
 
   async function handleLoadMore() {
     if (!query || loadingMore) {
@@ -129,29 +131,54 @@ function SearchResults() {
           </Link>
 
           <p className="eyebrow">
-            THE ARCHIVE · CARPE DIEM
+            {hasQuery
+              ? "THE ARCHIVE · CARPE DIEM"
+              : "THE ARCHIVE"}
           </p>
 
-          <h1>Search Results</h1>
+          <h1>
+            {hasQuery
+              ? "Search Results"
+              : "The Archive"}
+          </h1>
 
-          <div className="results-meta">
-            <span>
-              Search: <strong>"{query}"</strong>
-            </span>
-
-            {!loading && !error && books.length > 0 && (
+          {hasQuery && (
+            <div className="results-meta">
               <span>
-                {books.length} displayed · {totalResults} matches
+                Search: <strong>"{query}"</strong>
               </span>
-            )}
-          </div>
+
+              {!loading &&
+                !error &&
+                books.length > 0 && (
+                  <span>
+                    {books.length} displayed ·{" "}
+                    {totalResults} matches
+                  </span>
+                )}
+            </div>
+          )}
         </section>
 
         <section className="archive">
-          {/* Loading */}
-          {loading && (
+          {!hasQuery && (
             <div className="status-message">
-              <p>Searching the archives...</p>
+              <p>
+                The archive is waiting.
+              </p>
+
+              <span>
+                Search by title or author to begin
+                exploring the collection.
+              </span>
+            </div>
+          )}
+
+          {hasQuery && loading && (
+            <div className="status-message">
+              <p>
+                Searching the archives...
+              </p>
 
               <span>
                 Good books are worth waiting for.
@@ -159,62 +186,70 @@ function SearchResults() {
             </div>
           )}
 
-          {/* Error */}
-          {error && books.length === 0 && (
-            <div className="status-message error">
-              <p>{error}</p>
+          {hasQuery &&
+            error &&
+            books.length === 0 && (
+              <div className="status-message error">
+                <p>{error}</p>
 
-              <span>
-                Even the best archives have their quiet days.
-              </span>
-            </div>
-          )}
+                <span>
+                  Even the best archives have their
+                  quiet days.
+                </span>
+              </div>
+            )}
 
-          {/* Empty */}
-          {!loading &&
+          {hasQuery &&
+            !loading &&
             !error &&
             books.length === 0 && (
               <div className="status-message">
                 <p>No books found.</p>
 
                 <span>
-                  Perhaps you haven't found the right words yet.
+                  Perhaps you haven't found the right
+                  words yet.
                 </span>
               </div>
             )}
 
-          {/* Results */}
-          {!loading && books.length > 0 && (
-            <>
-              <BookGrid books={books} />
+          {hasQuery &&
+            !loading &&
+            books.length > 0 && (
+              <>
+                <BookGrid
+                  books={books}
+                  searchQuery={query}
+                />
 
-              {hasMoreBooks && (
-                <div className="load-more-container">
-                  <button
-                    className="load-more-button"
-                    onClick={handleLoadMore}
-                    disabled={loadingMore}
-                  >
-                    {loadingMore
-                      ? "Opening more records..."
-                      : "Load More Books"}
-                  </button>
+                {hasMoreBooks && (
+                  <div className="load-more-container">
+                    <button
+                      className="load-more-button"
+                      onClick={handleLoadMore}
+                      disabled={loadingMore}
+                    >
+                      {loadingMore
+                        ? "Opening more records..."
+                        : "Load More Books"}
+                    </button>
 
-                  {error && (
-                    <p className="load-more-error">
-                      {error}
-                    </p>
-                  )}
-                </div>
-              )}
+                    {error && (
+                      <p className="load-more-error">
+                        {error}
+                      </p>
+                    )}
+                  </div>
+                )}
 
-              {!hasMoreBooks && (
-                <p className="archive-end">
-                  You have reached the end of the archive.
-                </p>
-              )}
-            </>
-          )}
+                {!hasMoreBooks && (
+                  <p className="archive-end">
+                    You have reached the end of the
+                    archive.
+                  </p>
+                )}
+              </>
+            )}
         </section>
       </main>
     </div>

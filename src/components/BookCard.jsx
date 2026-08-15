@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function BookCard({ book }) {
+function BookCard({ book, searchQuery }) {
   const coverId = book.cover_i;
 
   const coverUrl = coverId
@@ -25,6 +25,7 @@ function BookCard({ book }) {
         publishYear,
         editionCount,
         coverId,
+        searchQuery,
       }}
       className="book-card"
     >
