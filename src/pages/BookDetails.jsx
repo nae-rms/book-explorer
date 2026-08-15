@@ -9,6 +9,10 @@ import Navbar from "../components/Navbar";
 
 import { getBook } from "../services/openLibrary";
 
+import {
+  getLargeCoverUrl,
+} from "../utils/bookUtils";
+
 function BookDetails() {
   const { id } = useParams();
   const location = useLocation();
@@ -25,9 +29,11 @@ function BookDetails() {
       setError("");
 
       try {
-        const decodedId = decodeURIComponent(id);
+        const decodedId =
+          decodeURIComponent(id);
 
-        const data = await getBook(decodedId);
+        const data =
+          await getBook(decodedId);
 
         setBook(data);
       } catch (error) {
@@ -43,6 +49,13 @@ function BookDetails() {
 
     fetchBook();
   }, [id]);
+
+  const returnToArchive =
+    searchBook?.searchQuery
+      ? `/search?q=${encodeURIComponent(
+          searchBook.searchQuery
+        )}`
+      : "/";
 
   if (loading) {
     return (
@@ -65,12 +78,6 @@ function BookDetails() {
   }
 
   if (error || !book) {
-    const returnPath = searchBook?.searchQuery
-      ? `/search?q=${encodeURIComponent(
-          searchBook.searchQuery
-        )}`
-      : "/";
-
     return (
       <div className="app">
         <Navbar />
@@ -82,7 +89,7 @@ function BookDetails() {
             </p>
 
             <Link
-              to={returnPath}
+              to={returnToArchive}
               className="back-link"
             >
               ← Return to the archive
@@ -110,13 +117,23 @@ function BookDetails() {
     searchBook?.editionCount ||
     0;
 
-  const coverId =
-    searchBook?.coverId ||
-    book.covers?.[0];
+  const coverBook = {
+    coverId:
+      searchBook?.coverId ||
+      null,
 
-  const coverUrl = coverId
-    ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
-    : null;
+    coverEditionKey:
+      searchBook?.coverEditionKey ||
+      book.covers?.[0] ||
+      null,
+  };
+
+  const coverUrl =
+    searchBook?.coverId || searchBook?.coverEditionKey
+      ? getLargeCoverUrl(coverBook)
+      : book.covers?.[0]
+        ? `https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`
+        : null;
 
   const description =
     typeof book.description === "string"
@@ -125,12 +142,6 @@ function BookDetails() {
 
   const subjects =
     book.subjects?.slice(0, 12) || [];
-
-  const returnToArchive = searchBook?.searchQuery
-    ? `/search?q=${encodeURIComponent(
-        searchBook.searchQuery
-      )}`
-    : "/";
 
   return (
     <div className="app">

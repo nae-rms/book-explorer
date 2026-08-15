@@ -1,13 +1,21 @@
+import {
+  normalizeBooks,
+} from "../utils/bookUtils";
+
 const OPEN_LIBRARY_BASE_URL =
   "https://openlibrary.org";
+
+const searchCache = new Map();
+const bookCache = new Map();
+
 
 /**
  * Search Open Library for books.
  *
- * @param {string} query - Search term.
- * @param {number} page - Page number.
- * @param {number} limit - Number of results per request.
- * @returns {Promise<object>} Open Library search response.
+ * @param {string} query
+ * @param {number} page
+ * @param {number} limit
+ * @returns {Promise<object>}
  */
 export async function searchBooks(
   query,
@@ -21,6 +29,16 @@ export async function searchBooks(
       books: [],
       totalResults: 0,
     };
+  }
+
+  const cacheKey =
+    `${trimmedQuery.toLowerCase()}-${page}-${limit}`;
+
+  const cachedResult =
+    searchCache.get(cacheKey);
+
+  if (cachedResult) {
+    return cachedResult;
   }
 
   const url =
@@ -39,22 +57,37 @@ export async function searchBooks(
 
   const data = await response.json();
 
-  return {
-    books: data.docs.filter((book) => book.title),
-    totalResults: data.numFound || 0,
+  const result = {
+    books: normalizeBooks(data.docs || []),
+
+    totalResults:
+      data.numFound || 0,
   };
+
+  searchCache.set(cacheKey, result);
+
+  return result;
 }
 
 
 /**
  * Fetch a single Open Library work.
  *
- * @param {string} workKey - Example: "/works/OL123W"
- * @returns {Promise<object>} Open Library work object.
+ * @param {string} workKey
+ * @returns {Promise<object>}
  */
 export async function getBook(workKey) {
   if (!workKey) {
-    throw new Error("A book key is required.");
+    throw new Error(
+      "A book key is required."
+    );
+  }
+
+  const cachedBook =
+    bookCache.get(workKey);
+
+  if (cachedBook) {
+    return cachedBook;
   }
 
   const response = await fetch(
@@ -67,5 +100,9 @@ export async function getBook(workKey) {
     );
   }
 
-  return response.json();
+  const book = await response.json();
+
+  bookCache.set(workKey, book);
+
+  return book;
 }

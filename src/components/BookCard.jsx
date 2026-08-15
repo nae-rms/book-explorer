@@ -1,38 +1,22 @@
 import { Link } from "react-router-dom";
 
-function BookCard({ book, searchQuery }) {
-  const coverId = book.cover_i;
-
-  const coverUrl = coverId
-    ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
-    : null;
-
-  const author =
-    book.author_name?.[0] || "Unknown author";
-
-  const publishYear =
-    book.first_publish_year || "Year unknown";
-
-  const editionCount =
-    book.edition_count || 0;
-
+function BookCard({
+  book,
+  searchQuery,
+}) {
   return (
     <Link
-      to={`/book/${encodeURIComponent(book.key)}`}
+      to={`/book/${encodeURIComponent(book.id)}`}
       state={{
-        title: book.title,
-        author,
-        publishYear,
-        editionCount,
-        coverId,
+        ...book,
         searchQuery,
       }}
       className="book-card"
     >
       <div className="book-cover">
-        {coverUrl ? (
+        {book.coverUrl ? (
           <img
-            src={coverUrl}
+            src={book.coverUrl}
             alt={`Cover of ${book.title}`}
             loading="lazy"
           />
@@ -44,9 +28,9 @@ function BookCard({ book, searchQuery }) {
       <div className="book-info">
         <h3>{book.title}</h3>
 
-        <p>{author}</p>
+        <p>{book.author}</p>
 
-        <span>{publishYear}</span>
+        <span>{book.publishYear}</span>
       </div>
     </Link>
   );
