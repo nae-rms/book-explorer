@@ -199,7 +199,7 @@ function BookDetails() {
               )}
 
               <p className="book-details-motto">
-                "I was good, I was really good"
+                "“No matter what anybody tells you, words and ideas can change the world.”"
               </p>
             </div>
           </div>
