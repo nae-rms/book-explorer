@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import BookGrid from "../components/BookGrid";
@@ -25,7 +25,9 @@ function SearchResults() {
 
       try {
         const response = await fetch(
-          `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`
+          `https://openlibrary.org/search.json?q=${encodeURIComponent(
+            query
+          )}&limit=24`
         );
 
         if (!response.ok) {
@@ -34,10 +36,18 @@ function SearchResults() {
 
         const data = await response.json();
 
-        setBooks(data.docs);
+        const cleanedBooks = data.docs
+          .filter((book) => book.title)
+          .slice(0, 24);
+
+        setBooks(cleanedBooks);
       } catch (error) {
         console.error(error);
-        setError("Something went wrong while searching the archives.");
+
+        setError(
+          "Something went wrong while searching the archives."
+        );
+
         setBooks([]);
       } finally {
         setLoading(false);
@@ -70,7 +80,7 @@ function SearchResults() {
 
             {!loading && !error && books.length > 0 && (
               <span>
-                {books.length} books found
+                {books.length} books displayed
               </span>
             )}
           </div>
@@ -80,6 +90,7 @@ function SearchResults() {
           {loading && (
             <div className="status-message">
               <p>Searching the archives...</p>
+
               <span>
                 Good books are worth waiting for.
               </span>
@@ -89,6 +100,7 @@ function SearchResults() {
           {error && (
             <div className="status-message error">
               <p>{error}</p>
+
               <span>
                 Even the best archives have their quiet days.
               </span>
@@ -98,6 +110,7 @@ function SearchResults() {
           {!loading && !error && books.length === 0 && (
             <div className="status-message">
               <p>No books found.</p>
+
               <span>
                 Perhaps you haven't found the right words yet.
               </span>
