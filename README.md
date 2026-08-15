@@ -1,16 +1,83 @@
-# React + Vite
+# Dead Poets Archives
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cinematic book discovery application built with React and the Open Library API.
 
-Currently, two official plugins are available:
+Search for books by title or author, explore results, and open individual archive records for more information.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The interface is inspired by literary archives, classic editorial design, and the atmosphere of *Dead Poets Society*.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Preview
 
-## Expanding the ESLint configuration
+### Home
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+A cinematic landing page centered around book discovery.
+
+### Search Results
+
+Search Open Library and browse books with covers, authors, publication years, and additional results through pagination.
+
+### Book Details
+
+Open individual books to view descriptions, subjects, editions, and additional metadata.
+
+---
+
+## Features
+
+- Search books by title or author
+- Controlled React search input
+- Open Library API integration
+- Loading, error, and empty states
+- Book result cards with cover images
+- Book detail pages
+- Load more results
+- Search results stored in URL parameters
+- Responsive layout
+- Cinematic, literary-inspired interface
+
+---
+
+## Tech Stack
+
+- React
+- JavaScript
+- Vite
+- React Router
+- CSS
+- Open Library API
+- Lucide React
+
+---
+
+## Project Structure
+
+```text
+src/
+├── assets/
+│   ├── bedroom-writing.jpg
+│   ├── soccer-sunset.jpg
+│   ├── welton-courtyard.jpg
+│   └── welton-lake.jpg
+│
+├── components/
+│   ├── BookCard.jsx
+│   ├── BookGrid.jsx
+│   ├── Navbar.jsx
+│   └── SearchBar.jsx
+│
+├── pages/
+│   ├── BookDetails.jsx
+│   ├── Home.jsx
+│   └── SearchResults.jsx
+│
+├── services/
+│   └── openLibrary.js
+│
+├── utils/
+│   └── bookUtils.js
+│
+├── App.jsx
+├── index.css
+└── main.jsx
