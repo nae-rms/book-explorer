@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import BookGrid from "../components/BookGrid";
@@ -53,32 +53,55 @@ function SearchResults() {
 
       <main className="results-page">
         <section className="results-header">
-          <p className="eyebrow">THE ARCHIVE · CARPE DIEM</p>
+          <Link to="/" className="back-link">
+            ← Return to the archives
+          </Link>
+
+          <p className="eyebrow">
+            THE ARCHIVE · CARPE DIEM
+          </p>
 
           <h1>Search Results</h1>
 
-          <p className="results-count">
-            Showing books matching "{query}".
-          </p>
+          <div className="results-meta">
+            <span>
+              Search: <strong>"{query}"</strong>
+            </span>
+
+            {!loading && !error && books.length > 0 && (
+              <span>
+                {books.length} books found
+              </span>
+            )}
+          </div>
         </section>
 
         <section className="archive">
           {loading && (
-            <p className="status-message">
-              Searching the archives...
-            </p>
+            <div className="status-message">
+              <p>Searching the archives...</p>
+              <span>
+                Good books are worth waiting for.
+              </span>
+            </div>
           )}
 
           {error && (
-            <p className="status-message error">
-              {error}
-            </p>
+            <div className="status-message error">
+              <p>{error}</p>
+              <span>
+                Even the best archives have their quiet days.
+              </span>
+            </div>
           )}
 
           {!loading && !error && books.length === 0 && (
-            <p className="status-message">
-              No books found.
-            </p>
+            <div className="status-message">
+              <p>No books found.</p>
+              <span>
+                Perhaps you haven't found the right words yet.
+              </span>
+            </div>
           )}
 
           {!loading && !error && books.length > 0 && (
