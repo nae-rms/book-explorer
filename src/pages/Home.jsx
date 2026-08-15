@@ -1,6 +1,6 @@
 import { Feather, Library, Quote } from "lucide-react";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 
 import weltonCourtyard from "../assets/welton-courtyard.jpg";
