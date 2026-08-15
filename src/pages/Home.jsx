@@ -8,7 +8,9 @@ function Home() {
 
       <main className="home">
         <section className="hero">
-          <p className="eyebrow">THE LITERARY ARCHIVE</p>
+          <p className="eyebrow">
+            THE LITERARY ARCHIVE
+          </p>
 
           <h1>
             Dead Poets
@@ -21,6 +23,10 @@ function Home() {
           </p>
 
           <SearchBar />
+
+          <p className="hero-motto">
+            Carpe diem.
+          </p>
         </section>
       </main>
     </div>

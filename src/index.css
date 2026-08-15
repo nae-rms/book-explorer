@@ -380,6 +380,33 @@ img {
   font-weight: 500;
 }
 
+/* ========================================
+   SEARCH CLEAR BUTTON
+======================================== */
+
+.search-clear {
+  width: 42px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  background: transparent;
+  color: var(--text-muted);
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.search-clear:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
 
 /* ========================================
    ARCHIVE / RESULTS
