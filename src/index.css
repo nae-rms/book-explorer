@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
-/* ========================================
+
+/* =========================================================
    DESIGN SYSTEM
-======================================== */
+========================================================= */
 
 :root {
   --bg-primary: #171614;
@@ -29,9 +30,9 @@
 }
 
 
-/* ========================================
+/* =========================================================
    RESET
-======================================== */
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -75,11 +76,14 @@ img {
 }
 
 
-/* ========================================
+/* =========================================================
    NAVBAR
-======================================== */
+========================================================= */
 
 .navbar {
+  position: relative;
+  z-index: 20;
+
   height: 80px;
   padding: 0 4%;
 
@@ -94,6 +98,7 @@ img {
 
 .logo {
   font-family: "Cormorant Garamond", serif;
+
   font-size: 1.5rem;
   font-weight: 600;
 
@@ -145,32 +150,9 @@ img {
 }
 
 
-/* ========================================
-   HOME PAGE
-======================================== */
-
-.home {
-  min-height: calc(100vh - 80px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/* ========================================
-   HERO
-======================================== */
-
-.hero {
-  width: 100%;
-  max-width: 1000px;
-
-  margin: 0 auto;
-  padding: 80px 24px 120px;
-
-  text-align: center;
-}
+/* =========================================================
+   GLOBAL TYPOGRAPHY
+========================================================= */
 
 .eyebrow {
   margin-bottom: 16px;
@@ -184,41 +166,142 @@ img {
   text-transform: uppercase;
 }
 
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home {
+  min-height: calc(100vh - 80px);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+
+  min-height: calc(100vh - 80px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  text-align: center;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+
+  background-position: center;
+  background-size: cover;
+
+  transform: scale(1.03);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(12, 11, 9, 0.70),
+      rgba(12, 11, 9, 0.80)
+    );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+
+  width: min(900px, 100%);
+
+  padding: 100px 24px 110px;
+}
+
+.hero-institution {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 35px;
+
+  color: #c7b58d;
+
+  font-size: 0.65rem;
+  font-weight: 600;
+
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.hero-icon {
+  width: 48px;
+  height: 48px;
+
+  margin: 0 auto 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(181, 154, 98, 0.45);
+  border-radius: 50%;
+
+  color: var(--accent-gold);
+
+  background: rgba(20, 18, 15, 0.35);
+}
+
+.hero .eyebrow {
+  margin-bottom: 14px;
+}
+
 .hero h1 {
   max-width: 900px;
 
   margin: 0 auto;
 
+  color: var(--text-primary);
+
   font-family: "Cormorant Garamond", serif;
 
-  font-size: clamp(4.5rem, 9vw, 8rem);
+  font-size: clamp(4rem, 9vw, 8rem);
   font-weight: 500;
 
-  line-height: 0.85;
+  line-height: 0.84;
   letter-spacing: -0.04em;
 
   text-transform: uppercase;
 }
 
 .hero-description {
-  max-width: 520px;
+  max-width: 500px;
 
   margin: 30px auto 0;
 
-  color: var(--text-secondary);
+  color: #c1b7a8;
 
   font-family: "Cormorant Garamond", serif;
-  font-size: 1.3rem;
 
+  font-size: 1.3rem;
   line-height: 1.5;
 }
 
 .hero-motto {
-  margin-top: 18px;
+  margin-top: 20px;
 
-  color: var(--text-muted);
+  color: var(--accent-gold);
 
   font-family: "Cormorant Garamond", serif;
+
   font-size: 1rem;
   font-style: italic;
 
@@ -226,9 +309,9 @@ img {
 }
 
 
-/* ========================================
+/* =========================================================
    SEARCH BAR
-======================================== */
+========================================================= */
 
 .search-bar {
   width: 100%;
@@ -247,6 +330,12 @@ img {
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
+}
+
+.hero .search-bar {
+  background: rgba(28, 26, 22, 0.90);
+
+  backdrop-filter: blur(8px);
 }
 
 .search-bar:focus-within {
@@ -315,10 +404,289 @@ img {
   transform: scale(0.98);
 }
 
+.search-clear {
+  width: 42px;
+  height: 100%;
 
-/* ========================================
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+  color: var(--text-muted);
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.search-clear:hover {
+  color: var(--text-primary);
+
+  background: rgba(255, 255, 255, 0.03);
+}
+
+
+/* =========================================================
+   HOME — INTRODUCTION
+========================================================= */
+
+.archive-introduction {
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding: 130px 6%;
+
+  display: grid;
+  grid-template-columns: 0.95fr 1fr;
+
+  gap: 90px;
+
+  align-items: center;
+}
+
+.intro-image {
+  position: relative;
+}
+
+.intro-image::before {
+  content: "";
+
+  position: absolute;
+  inset: -12px;
+
+  border: 1px solid var(--border);
+
+  z-index: -1;
+}
+
+.intro-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+
+  filter: saturate(0.8);
+}
+
+.intro-content {
+  max-width: 520px;
+}
+
+.intro-content h2 {
+  margin-top: 10px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(3rem, 5vw, 5rem);
+
+  font-weight: 500;
+
+  line-height: 0.92;
+}
+
+.intro-icon {
+  margin-top: 28px;
+
+  color: var(--accent-gold);
+}
+
+.intro-content > p:not(.eyebrow):not(.intro-motto) {
+  margin-top: 24px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+}
+
+.intro-motto {
+  margin-top: 22px;
+
+  color: var(--accent-gold);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.1rem;
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   HOME — CINEMATIC IMAGE
+========================================================= */
+
+.cinematic-section {
+  position: relative;
+
+  height: 520px;
+
+  overflow: hidden;
+
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.cinematic-section img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter:
+    saturate(0.75)
+    brightness(0.65);
+}
+
+.cinematic-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(16, 14, 12, 0.18),
+      rgba(16, 14, 12, 0.68)
+    );
+}
+
+.cinematic-content {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: var(--text-primary);
+}
+
+.cinematic-content svg {
+  margin-bottom: 20px;
+
+  color: var(--accent-gold);
+}
+
+.cinematic-content p {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(2rem, 4vw, 3.5rem);
+
+  font-style: italic;
+}
+
+.cinematic-content span {
+  margin-top: 14px;
+
+  color: #c0b6a7;
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   HOME — CLOSING / PHILOSOPHY
+========================================================= */
+
+.archive-philosophy {
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding: 130px 6%;
+
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+
+  gap: 90px;
+
+  align-items: center;
+}
+
+.philosophy-content {
+  max-width: 520px;
+}
+
+.philosophy-content h2 {
+  margin-top: 10px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(3rem, 5vw, 5rem);
+
+  font-weight: 500;
+
+  line-height: 0.92;
+}
+
+.philosophy-content > p:not(.eyebrow) {
+  margin-top: 25px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.9rem;
+
+  line-height: 1.8;
+}
+
+.philosophy-motto {
+  margin-top: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--accent-gold);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.18em;
+}
+
+.philosophy-image {
+  position: relative;
+}
+
+.philosophy-image::before {
+  content: "";
+
+  position: absolute;
+  inset: -12px;
+
+  border: 1px solid var(--border);
+
+  z-index: -1;
+}
+
+.philosophy-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+
+  filter: saturate(0.75);
+}
+
+
+/* =========================================================
    RESULTS PAGE
-======================================== */
+========================================================= */
 
 .results-page {
   min-height: calc(100vh - 80px);
@@ -372,45 +740,20 @@ img {
   color: var(--text-secondary);
 
   font-size: 0.75rem;
+
   letter-spacing: 0.04em;
 }
 
 .results-meta strong {
   color: var(--text-primary);
+
   font-weight: 500;
 }
 
-/* ========================================
-   SEARCH CLEAR BUTTON
-======================================== */
 
-.search-clear {
-  width: 42px;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: none;
-
-  background: transparent;
-  color: var(--text-muted);
-
-  transition:
-    color 0.2s ease,
-    background 0.2s ease;
-}
-
-.search-clear:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-
-/* ========================================
-   ARCHIVE / RESULTS
-======================================== */
+/* =========================================================
+   RESULTS / ARCHIVE
+========================================================= */
 
 .archive {
   max-width: 1500px;
@@ -432,9 +775,9 @@ img {
 }
 
 
-/* ========================================
+/* =========================================================
    BOOK CARD
-======================================== */
+========================================================= */
 
 .book-card {
   min-width: 0;
@@ -450,9 +793,9 @@ img {
 }
 
 
-/* ========================================
+/* =========================================================
    BOOK COVER
-======================================== */
+========================================================= */
 
 .book-cover {
   width: min(100%, 175px);
@@ -512,9 +855,9 @@ img {
 }
 
 
-/* ========================================
+/* =========================================================
    BOOK INFO
-======================================== */
+========================================================= */
 
 .book-info {
   max-width: 175px;
@@ -557,194 +900,50 @@ img {
   letter-spacing: 0.1em;
 }
 
-/* ========================================
-   BOOK DETAILS
-======================================== */
 
-.book-details-page {
-  min-height: calc(100vh - 80px);
-}
+/* =========================================================
+   LOADING / ERROR / EMPTY STATES
+========================================================= */
 
-.book-details-container {
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-  padding: 55px 6% 120px;
-}
-
-.book-details {
-  margin-top: 45px;
-
-  display: grid;
-  grid-template-columns: 300px 1fr;
-
-  gap: 70px;
-
-  align-items: start;
-}
-
-.book-details-cover {
-  width: 100%;
-
-  aspect-ratio: 2 / 3;
+.status-message {
+  min-height: 280px;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  overflow: hidden;
-
-  border: 1px solid var(--border);
-
-  background:
-    linear-gradient(
-      145deg,
-      #332f28,
-      #201e1a
-    );
-
-  color: var(--text-muted);
-
-  box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.35);
+  text-align: center;
 }
 
-.book-details-cover span {
-  font-size: 0.7rem;
-
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.book-details-content {
-  padding-top: 15px;
-}
-
-.book-details-content h1 {
-  margin-top: 12px;
-
+.status-message p {
   font-family: "Cormorant Garamond", serif;
 
-  font-size: clamp(3.5rem, 6vw, 6rem);
-  font-weight: 500;
-
-  line-height: 0.9;
-}
-
-.book-details-author {
-  margin-top: 18px;
-
-  color: var(--text-secondary);
-
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.5rem;
-}
-
-.book-details-meta {
-  margin-top: 28px;
-
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 28px;
-
-  color: var(--text-muted);
-
-  font-size: 0.7rem;
-
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.book-details-meta span {
-  position: relative;
-}
-
-.book-details-meta span:not(:last-child)::after {
-  content: "·";
-
-  position: absolute;
-  right: -17px;
-
-  color: var(--accent-gold);
-}
-
-.book-details-divider {
-  width: 100%;
-  height: 1px;
-
-  margin: 35px 0;
-
-  background: var(--border);
-}
-
-.book-details-content h2 {
-  margin-bottom: 15px;
-
-  font-family: "Cormorant Garamond", serif;
-
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 500;
 }
 
-.subject-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+.status-message span {
+  max-width: 450px;
 
-.subject-tags span {
-  padding: 7px 11px;
-
-  border: 1px solid var(--border);
-
-  color: var(--text-secondary);
-
-  font-size: 0.7rem;
-
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.book-details-motto {
-  margin-top: 55px;
+  margin-top: 10px;
 
   color: var(--text-muted);
 
   font-family: "Cormorant Garamond", serif;
-  font-size: 1rem;
+
+  font-size: 1.05rem;
   font-style: italic;
 }
 
-/* ========================================
-   BOOK DETAILS — CONTENT
-======================================== */
-
-.book-details-cover img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
+.status-message.error p {
+  color: #c26d70;
 }
 
-.book-details-description {
-  max-width: 700px;
 
-  color: var(--text-secondary);
-
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.2rem;
-
-  line-height: 1.65;
-}
-
-.book-details-subjects {
-  margin-top: 35px;
-}
-
-/* ========================================
+/* =========================================================
    LOAD MORE
-======================================== */
+========================================================= */
 
 .load-more-container {
   margin-top: 70px;
@@ -807,65 +1006,208 @@ img {
   color: var(--text-muted);
 
   font-family: "Cormorant Garamond", serif;
+
   font-size: 1.1rem;
   font-style: italic;
 
   text-align: center;
 }
 
-/* ========================================
-   LOADING / ERROR / EMPTY STATES
-======================================== */
 
-.status-message {
-  min-height: 280px;
+/* =========================================================
+   BOOK DETAILS PAGE
+========================================================= */
+
+.book-details-page {
+  min-height: calc(100vh - 80px);
+}
+
+.book-details-container {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 55px 6% 120px;
+}
+
+.book-details {
+  margin-top: 45px;
+
+  display: grid;
+  grid-template-columns: 300px 1fr;
+
+  gap: 70px;
+
+  align-items: start;
+}
+
+.book-details-cover {
+  width: 100%;
+
+  aspect-ratio: 2 / 3;
 
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  text-align: center;
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      #332f28,
+      #201e1a
+    );
+
+  color: var(--text-muted);
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
-.status-message p {
+.book-details-cover img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.book-details-cover span {
+  font-size: 0.7rem;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.book-details-content {
+  padding-top: 15px;
+}
+
+.book-details-content h1 {
+  margin-top: 12px;
+
   font-family: "Cormorant Garamond", serif;
 
-  font-size: 2.2rem;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 500;
+
+  line-height: 0.9;
+}
+
+.book-details-author {
+  margin-top: 18px;
+
+  color: var(--text-secondary);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.5rem;
+}
+
+.book-details-meta {
+  margin-top: 28px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+
+  color: var(--text-muted);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.book-details-meta span {
+  position: relative;
+}
+
+.book-details-meta span:not(:last-child)::after {
+  content: "·";
+
+  position: absolute;
+  right: -17px;
+
+  color: var(--accent-gold);
+}
+
+.book-details-divider {
+  width: 100%;
+  height: 1px;
+
+  margin: 35px 0;
+
+  background: var(--border);
+}
+
+.book-details-content h2 {
+  margin-bottom: 15px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.8rem;
   font-weight: 500;
 }
 
-.status-message span {
-  max-width: 450px;
+.book-details-description {
+  max-width: 700px;
 
-  margin-top: 10px;
+  color: var(--text-secondary);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.2rem;
+
+  line-height: 1.65;
+}
+
+.book-details-subjects {
+  margin-top: 35px;
+}
+
+.subject-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.subject-tags span {
+  padding: 7px 11px;
+
+  border: 1px solid var(--border);
+
+  color: var(--text-secondary);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.book-details-motto {
+  margin-top: 55px;
 
   color: var(--text-muted);
 
   font-family: "Cormorant Garamond", serif;
 
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-style: italic;
 }
 
-.status-message.error p {
-  color: #c26d70;
-}
 
-
-/* ========================================
+/* =========================================================
    TABLET
-======================================== */
+========================================================= */
 
 @media (max-width: 1000px) {
   .book-grid {
     grid-template-columns:
       repeat(3, minmax(180px, 1fr));
-  }
-
-  .hero {
-    padding-top: 70px;
-    padding-bottom: 90px;
   }
 
   .hero h1 {
@@ -874,17 +1216,18 @@ img {
 }
 
 
-/* ========================================
+/* =========================================================
    MOBILE
-======================================== */
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .navbar {
     height: auto;
 
     padding: 20px 6%;
 
     flex-direction: column;
+
     gap: 18px;
   }
 
@@ -893,11 +1236,20 @@ img {
   }
 
   .hero {
-    padding: 60px 20px 80px;
+    min-height: calc(100vh - 140px);
+  }
+
+  .hero-content {
+    padding: 80px 20px;
+  }
+
+  .hero-institution {
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
   }
 
   .hero h1 {
-    font-size: 3.6rem;
+    font-size: 3.7rem;
   }
 
   .hero-description {
@@ -923,8 +1275,34 @@ img {
     height: 50px;
   }
 
+  .archive-introduction,
+  .archive-philosophy {
+    grid-template-columns: 1fr;
+
+    gap: 55px;
+
+    padding:
+      90px 20px;
+  }
+
+  .archive-philosophy {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .intro-content,
+  .philosophy-content {
+    max-width: none;
+  }
+
+  .cinematic-section {
+    height: 400px;
+  }
+
   .results-header {
-    padding: 50px 20px 35px;
+    padding:
+      50px 20px
+      35px;
   }
 
   .back-link {
@@ -937,7 +1315,9 @@ img {
 
   .results-meta {
     align-items: flex-start;
+
     flex-direction: column;
+
     gap: 8px;
   }
 
@@ -961,12 +1341,34 @@ img {
   .book-info {
     max-width: 150px;
   }
+
+  .book-details-container {
+    padding:
+      45px 20px
+      90px;
+  }
+
+  .book-details {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+  .book-details-cover {
+    width: min(100%, 260px);
+
+    margin: 0 auto;
+  }
+
+  .book-details-content h1 {
+    font-size: 3.5rem;
+  }
 }
 
 
-/* ========================================
+/* =========================================================
    SMALL MOBILE
-======================================== */
+========================================================= */
 
 @media (max-width: 430px) {
   .logo {
