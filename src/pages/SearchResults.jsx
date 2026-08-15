@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
-import BookGrid from "../components/BookGrid";
-
-import { searchBooks } from "../services/openLibrary";
+import Navbar from "../components/NavBar.jsx";
+import BookGrid from "../components/BookGrid.jsx";
+import { searchBooks } from "../services/openLibrary.js";
 
 const BOOKS_PER_PAGE = 24;
 
