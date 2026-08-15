@@ -34,6 +34,7 @@ function BookCard({ book, searchQuery }) {
           <img
             src={coverUrl}
             alt={`Cover of ${book.title}`}
+            loading="lazy"
           />
         ) : (
           <span>NO COVER</span>

@@ -1757,3 +1757,22 @@ img {
     gap: 6px;
   }
 }
+
+/* =========================================================
+   LOADING ANIMATION
+========================================================= */
+
+.status-message p {
+  animation: archivePulse 1.6s ease-in-out infinite;
+}
+
+@keyframes archivePulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

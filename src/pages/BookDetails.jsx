@@ -7,6 +7,8 @@ import {
 
 import Navbar from "../components/Navbar";
 
+import { getBook } from "../services/openLibrary";
+
 function BookDetails() {
   const { id } = useParams();
   const location = useLocation();
@@ -25,17 +27,7 @@ function BookDetails() {
       try {
         const decodedId = decodeURIComponent(id);
 
-        const response = await fetch(
-          `https://openlibrary.org${decodedId}.json`
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            "Failed to fetch book details."
-          );
-        }
-
-        const data = await response.json();
+        const data = await getBook(decodedId);
 
         setBook(data);
       } catch (error) {
@@ -59,7 +51,9 @@ function BookDetails() {
 
         <main className="book-details-page">
           <div className="status-message">
-            <p>Opening the archive record...</p>
+            <p>
+              Opening the archive record...
+            </p>
 
             <span>
               Some books deserve a slower reading.
@@ -71,6 +65,12 @@ function BookDetails() {
   }
 
   if (error || !book) {
+    const returnPath = searchBook?.searchQuery
+      ? `/search?q=${encodeURIComponent(
+          searchBook.searchQuery
+        )}`
+      : "/";
+
     return (
       <div className="app">
         <Navbar />
@@ -82,13 +82,7 @@ function BookDetails() {
             </p>
 
             <Link
-              to={
-                searchBook?.searchQuery
-                  ? `/search?q=${encodeURIComponent(
-                      searchBook.searchQuery
-                    )}`
-                  : "/"
-              }
+              to={returnPath}
               className="back-link"
             >
               ← Return to the archive

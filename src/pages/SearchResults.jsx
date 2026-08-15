@@ -4,6 +4,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import BookGrid from "../components/BookGrid";
 
+import { searchBooks } from "../services/openLibrary";
+
 const BOOKS_PER_PAGE = 24;
 
 function SearchResults() {
@@ -23,7 +25,7 @@ function SearchResults() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchBooks() {
+    async function fetchInitialBooks() {
       if (!hasQuery) {
         setBooks([]);
         setTotalResults(0);
@@ -36,25 +38,14 @@ function SearchResults() {
       setError("");
 
       try {
-        const response = await fetch(
-          `https://openlibrary.org/search.json?q=${encodeURIComponent(
-            query
-          )}&limit=${BOOKS_PER_PAGE}&page=1`
+        const data = await searchBooks(
+          query,
+          1,
+          BOOKS_PER_PAGE
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch books.");
-        }
-
-        const data = await response.json();
-
-        setTotalResults(data.numFound || 0);
-
-        const cleanedBooks = data.docs.filter(
-          (book) => book.title
-        );
-
-        setBooks(cleanedBooks);
+        setBooks(data.books);
+        setTotalResults(data.totalResults);
         setPage(1);
       } catch (error) {
         console.error(error);
@@ -70,7 +61,7 @@ function SearchResults() {
       }
     }
 
-    fetchBooks();
+    fetchInitialBooks();
   }, [query, hasQuery]);
 
   async function handleLoadMore() {
@@ -84,25 +75,15 @@ function SearchResults() {
     setError("");
 
     try {
-      const response = await fetch(
-        `https://openlibrary.org/search.json?q=${encodeURIComponent(
-          query
-        )}&limit=${BOOKS_PER_PAGE}&page=${nextPage}`
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to load more books.");
-      }
-
-      const data = await response.json();
-
-      const newBooks = data.docs.filter(
-        (book) => book.title
+      const data = await searchBooks(
+        query,
+        nextPage,
+        BOOKS_PER_PAGE
       );
 
       setBooks((currentBooks) => [
         ...currentBooks,
-        ...newBooks,
+        ...data.books,
       ]);
 
       setPage(nextPage);
