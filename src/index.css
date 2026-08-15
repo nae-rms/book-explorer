@@ -1606,6 +1606,25 @@ img {
   }
 }
 
+.archive-philosophy {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 45px;
+
+  padding:
+    90px 20px;
+}
+
+.philosophy-content {
+  max-width: none;
+}
+
+.philosophy-visual {
+  width: 100%;
+}
+
 /* =========================================================
    FOOTER
 ========================================================= */
