@@ -70,9 +70,10 @@ function Home() {
             </div>
 
             <div className="image-caption">
-              <span>ARCHIVE PHOTOGRAPH 02</span>
+              <span>ARCHIVE PHOTOGRAPH 01</span>
+
               <span>
-                WELTON ACADEMY · PRIVATE COLLECTION
+                WELTON ACADEMY · BOUND SOULS
               </span>
             </div>
           </div>
@@ -114,7 +115,10 @@ function Home() {
           <div className="cinematic-overlay" />
 
           <div className="cinematic-content">
-            <Quote size={24} strokeWidth={1} />
+            <Quote
+              size={24}
+              strokeWidth={1}
+            />
 
             <p>
               "O Captain! My Captain!"
@@ -145,16 +149,30 @@ function Home() {
             </p>
 
             <div className="philosophy-motto">
-              <Feather size={18} strokeWidth={1.2} />
+              <Feather
+                size={18}
+                strokeWidth={1.2}
+              />
+
               <span>CARPE DIEM</span>
             </div>
           </div>
 
-          <div className="philosophy-image">
-            <img
-              src={soccerSunset}
-              alt="Students celebrating outdoors at sunset"
-            />
+          <div className="philosophy-visual">
+            <div className="philosophy-image">
+              <img
+                src={soccerSunset}
+                alt="Students celebrating outdoors at sunset"
+              />
+            </div>
+
+            <div className="image-caption">
+              <span>ARCHIVE PHOTOGRAPH 02</span>
+
+              <span>
+                WELTON ACADEMY · AUTUMN TERM
+              </span>
+            </div>
           </div>
         </section>
       </main>
@@ -199,13 +217,9 @@ function Home() {
               ABOUT
             </span>
 
-            <span>
-              Welton Academy
-            </span>
+            <span>Welton Academy</span>
 
-            <span>
-              Private Collection
-            </span>
+            <span>Private Collection</span>
           </div>
         </div>
 
