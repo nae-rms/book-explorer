@@ -77,80 +77,6 @@ img {
 
 
 /* =========================================================
-   NAVBAR
-========================================================= */
-
-.navbar {
-  position: relative;
-  z-index: 20;
-
-  height: 80px;
-  padding: 0 4%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border-bottom: 1px solid var(--border);
-
-  background: rgba(23, 22, 20, 0.96);
-}
-
-.logo {
-  font-family: "Cormorant Garamond", serif;
-
-  font-size: 1.5rem;
-  font-weight: 600;
-
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-
-  font-size: 0.7rem;
-  font-weight: 500;
-
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.nav-links a {
-  position: relative;
-
-  color: var(--text-secondary);
-
-  transition: color 0.2s ease;
-}
-
-.nav-links a::after {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-
-  width: 0;
-  height: 1px;
-
-  background: var(--accent-red);
-
-  transition: width 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: var(--text-primary);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-
-/* =========================================================
    GLOBAL TYPOGRAPHY
 ========================================================= */
 
@@ -168,11 +94,132 @@ img {
 
 
 /* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+  position: relative;
+  z-index: 20;
+
+  height: 76px;
+  padding: 0 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #13120f;
+
+  border-bottom: 1px solid #40392f;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: var(--text-primary);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.45rem;
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.logo-mark {
+  display: inline-block;
+
+  color: var(--accent-gold);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.35rem;
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  position: relative;
+
+  display: inline-block;
+
+  padding: 8px 0;
+
+  color: #8f877b;
+
+  transition: color 0.25s ease;
+}
+
+/* underline */
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--accent-gold);
+
+  transition: width 0.25s ease;
+}
+
+/* hover */
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* active page */
+.nav-links a.active {
+  color: var(--text-primary);
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+
+/* =========================================================
    HOME
 ========================================================= */
 
 .home {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 76px);
 }
 
 
@@ -183,7 +230,7 @@ img {
 .hero {
   position: relative;
 
-  min-height: calc(100vh - 80px);
+  min-height: 760px;
 
   display: flex;
   align-items: center;
@@ -211,8 +258,8 @@ img {
   background:
     linear-gradient(
       to bottom,
-      rgba(12, 11, 9, 0.70),
-      rgba(12, 11, 9, 0.80)
+      rgba(10, 9, 8, 0.58),
+      rgba(10, 9, 8, 0.72)
     );
 }
 
@@ -222,7 +269,7 @@ img {
 
   width: min(900px, 100%);
 
-  padding: 100px 24px 110px;
+  padding: 90px 24px 100px;
 }
 
 .hero-institution {
@@ -231,7 +278,7 @@ img {
   justify-content: center;
   gap: 10px;
 
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 
   color: #c7b58d;
 
@@ -246,7 +293,7 @@ img {
   width: 48px;
   height: 48px;
 
-  margin: 0 auto 22px;
+  margin: 0 auto 20px;
 
   display: flex;
   align-items: center;
@@ -258,6 +305,11 @@ img {
   color: var(--accent-gold);
 
   background: rgba(20, 18, 15, 0.35);
+}
+
+.hero-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .hero .eyebrow {
@@ -345,7 +397,7 @@ img {
     0 0 0 1px rgba(181, 154, 98, 0.15);
 }
 
-.search-bar svg {
+.search-bar > svg {
   flex-shrink: 0;
 
   margin-left: 18px;
@@ -375,7 +427,7 @@ img {
   color: var(--text-muted);
 }
 
-.search-bar button {
+.search-bar button[type="submit"] {
   height: 100%;
 
   padding: 0 28px;
@@ -396,17 +448,19 @@ img {
     transform 0.2s ease;
 }
 
-.search-bar button:hover {
+.search-bar button[type="submit"]:hover {
   background: var(--accent-red-hover);
 }
 
-.search-bar button:active {
+.search-bar button[type="submit"]:active {
   transform: scale(0.98);
 }
 
 .search-clear {
   width: 42px;
   height: 100%;
+
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -689,7 +743,7 @@ img {
 ========================================================= */
 
 .results-page {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 76px);
 }
 
 .results-header {
@@ -933,6 +987,7 @@ img {
   font-family: "Cormorant Garamond", serif;
 
   font-size: 1.05rem;
+
   font-style: italic;
 }
 
@@ -1008,6 +1063,7 @@ img {
   font-family: "Cormorant Garamond", serif;
 
   font-size: 1.1rem;
+
   font-style: italic;
 
   text-align: center;
@@ -1015,11 +1071,11 @@ img {
 
 
 /* =========================================================
-   BOOK DETAILS PAGE
+   BOOK DETAILS
 ========================================================= */
 
 .book-details-page {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 76px);
 }
 
 .book-details-container {
@@ -1111,6 +1167,7 @@ img {
 
   display: flex;
   flex-wrap: wrap;
+
   gap: 12px 28px;
 
   color: var(--text-muted);
@@ -1196,23 +1253,8 @@ img {
   font-family: "Cormorant Garamond", serif;
 
   font-size: 1rem;
+
   font-style: italic;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1000px) {
-  .book-grid {
-    grid-template-columns:
-      repeat(3, minmax(180px, 1fr));
-  }
-
-  .hero h1 {
-    font-size: clamp(3.8rem, 9vw, 6rem);
-  }
 }
 
 
@@ -1224,19 +1266,31 @@ img {
   .navbar {
     height: auto;
 
-    padding: 20px 6%;
+    min-height: 76px;
 
-    flex-direction: column;
+    padding: 18px 20px;
 
-    gap: 18px;
+    flex-direction: row;
+
+    gap: 20px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .logo-mark {
+    font-size: 1.2rem;
   }
 
   .nav-links {
-    gap: 1.5rem;
+    gap: 1rem;
+
+    font-size: 0.6rem;
   }
 
   .hero {
-    min-height: calc(100vh - 140px);
+    min-height: calc(100vh - 76px);
   }
 
   .hero-content {
@@ -1245,6 +1299,7 @@ img {
 
   .hero-institution {
     font-size: 0.55rem;
+
     letter-spacing: 0.16em;
   }
 
@@ -1270,8 +1325,9 @@ img {
     height: 56px;
   }
 
-  .search-bar button {
+  .search-bar button[type="submit"] {
     width: 100%;
+
     height: 50px;
   }
 
@@ -1287,6 +1343,7 @@ img {
 
   .archive-philosophy {
     display: flex;
+
     flex-direction: column-reverse;
   }
 
@@ -1362,42 +1419,5 @@ img {
 
   .book-details-content h1 {
     font-size: 3.5rem;
-  }
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 430px) {
-  .logo {
-    font-size: 1.2rem;
-  }
-
-  .nav-links {
-    gap: 1rem;
-
-    font-size: 0.65rem;
-  }
-
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .hero-description {
-    font-size: 1.05rem;
-  }
-
-  .search-bar {
-    margin-top: 35px;
-  }
-
-  .book-grid {
-    gap: 24px 14px;
-  }
-
-  .book-info h3 {
-    font-size: 1.15rem;
   }
 }
