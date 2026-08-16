@@ -13,6 +13,8 @@
   align-items: center;
   justify-content: space-between;
 
+  gap: 28px;
+
   background: #13120f;
 
   border-bottom: 1px solid #40392f;
@@ -27,6 +29,8 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
+
+  flex-shrink: 0;
 
   color: var(--text-primary);
 
@@ -62,7 +66,10 @@
 .nav-links {
   display: flex;
   align-items: center;
+
   gap: 38px;
+
+  margin-left: auto;
 
   font-size: 0.68rem;
   font-weight: 600;
@@ -117,6 +124,138 @@
 
 
 /* =========================================================
+   SEARCH TOGGLE
+========================================================= */
+
+.navbar-search {
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: flex-end;
+
+  margin-left: 6px;
+}
+
+.navbar-search-toggle {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid transparent;
+
+  background: transparent;
+
+  color: #8f877b;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.navbar-search-toggle:hover {
+  border-color: var(--border);
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   EXPANDED SEARCH
+========================================================= */
+
+.navbar-search.open {
+  width: min(360px, 42vw);
+}
+
+.navbar-search-form {
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid var(--border);
+
+  background: var(--bg-secondary);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navbar-search-form:focus-within {
+  border-color: var(--accent-gold);
+
+  box-shadow:
+    0 0 0 1px rgba(181, 154, 98, 0.12);
+}
+
+.navbar-search-form > svg {
+  flex-shrink: 0;
+
+  margin-left: 12px;
+
+  color: var(--text-muted);
+}
+
+.navbar-search-form input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 100%;
+
+  padding: 0 10px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text-primary);
+
+  font-size: 0.72rem;
+}
+
+.navbar-search-form input::placeholder {
+  color: var(--text-muted);
+}
+
+.navbar-search-close {
+  width: 36px;
+  height: 100%;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  transition: color 0.2s ease;
+}
+
+.navbar-search-close:hover {
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -127,13 +266,13 @@
 
     padding: 18px 20px;
 
-    flex-direction: row;
-
-    gap: 20px;
+    gap: 12px;
   }
 
   .logo {
     font-size: 1.1rem;
+
+    gap: 8px;
   }
 
   .logo-mark {
@@ -144,5 +283,29 @@
     gap: 1rem;
 
     font-size: 0.6rem;
+  }
+
+  .navbar-search {
+    margin-left: auto;
+  }
+
+  .navbar-search.open {
+    flex: 1;
+
+    width: auto;
+  }
+
+  .navbar-search-form {
+    height: 38px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    display: none;
+  }
+
+  .navbar-search.open {
+    width: 100%;
   }
 }
