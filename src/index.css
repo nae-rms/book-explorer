@@ -901,17 +901,17 @@ img {
 
   margin: 0 auto;
 
-  padding: 55px 6% 45px;
+  padding: 42px 6% 32px;
 }
 
 .back-link {
   display: inline-block;
 
-  margin-bottom: 55px;
+  margin-bottom: 32px;
 
   color: var(--text-muted);
 
-  font-size: 0.7rem;
+  font-size: 0.68rem;
 
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -923,27 +923,35 @@ img {
   color: var(--text-primary);
 }
 
+.results-header .eyebrow {
+  margin-bottom: 10px;
+
+  font-size: 0.62rem;
+}
+
 .results-header h1 {
   margin: 0;
 
   font-family: "Cormorant Garamond", serif;
 
-  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 5vw, 4.7rem);
+
   font-weight: 500;
 
-  line-height: 0.9;
+  line-height: 0.92;
 }
 
 .results-meta {
-  margin-top: 20px;
+  margin-top: 14px;
 
   display: flex;
   align-items: center;
-  gap: 24px;
+
+  gap: 20px;
 
   color: var(--text-secondary);
 
-  font-size: 0.75rem;
+  font-size: 0.72rem;
 
   letter-spacing: 0.04em;
 }
@@ -964,7 +972,7 @@ img {
 
   margin: 0 auto;
 
-  padding: 45px 6% 120px;
+  padding: 32px 6% 100px;
 
   border-top: 1px solid var(--border);
 }
@@ -1551,26 +1559,26 @@ img {
   }
 
   .results-header {
-    padding:
-      50px 20px
-      35px;
-  }
+  padding:
+    40px 20px
+    30px;
+}
 
-  .back-link {
-    margin-bottom: 40px;
-  }
+.back-link {
+  margin-bottom: 28px;
+}
 
-  .results-header h1 {
-    font-size: 3.2rem;
-  }
+.results-header h1 {
+  font-size: 3rem;
+}
 
-  .results-meta {
-    align-items: flex-start;
+.results-meta {
+  align-items: flex-start;
 
-    flex-direction: column;
+  flex-direction: column;
 
-    gap: 8px;
-  }
+  gap: 7px;
+}
 
   .archive {
     padding:

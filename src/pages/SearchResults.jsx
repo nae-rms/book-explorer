@@ -107,7 +107,7 @@ function SearchResults() {
       <main className="results-page">
         <section className="results-header">
           <Link to="/" className="back-link">
-            ← Return to the archives
+            ← Return to Welton
           </Link>
 
           <p className="eyebrow">
