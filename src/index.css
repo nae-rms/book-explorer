@@ -1627,11 +1627,9 @@ img {
 }
 
 .footer-inner {
-  max-width: 1250px;
+  width: 100%;
 
-  margin: 0 auto;
-
-  padding: 38px 6% 30px;
+  padding: 38px 3% 30px;
 
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -1714,12 +1712,10 @@ img {
 }
 
 .footer-bottom {
-  max-width: 1250px;
-
-  margin: 0 auto;
+  width: 100%;
 
   padding:
-    12px 6%
+    12px 3%
     18px;
 
   display: flex;
