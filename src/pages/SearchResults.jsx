@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-import Navbar from "../components/NavBar.jsx";
-import BookGrid from "../components/BookGrid.jsx";
-import { searchBooks } from "../services/openLibrary.js";
+import Navbar from "../components/Navbar";
+import BookGrid from "../components/BookGrid";
 
+import LoadingState from "../components/LoadingState";
+import EmptyState from "../components/EmptyState";
+import ErrorState from "../components/ErrorState";
+
+import { searchBooks } from "../services/openLibrary";
 
 const BOOKS_PER_PAGE = 24;
 
@@ -65,18 +69,18 @@ function SearchResults() {
   }, [query, hasQuery]);
 
   useEffect(() => {
-  if (hasQuery) {
-    document.title =
-      `Dead Poets Archives | Search · ${query}`;
-  } else {
-    document.title =
-      "Dead Poets Archives | The Archive";
-  }
+    if (hasQuery) {
+      document.title =
+        `Dead Poets Archives | Search · ${query}`;
+    } else {
+      document.title =
+        "Dead Poets Archives | The Archive";
+    }
 
-  return () => {
-    document.title = "Dead Poets Archives";
-  };
-}, [query, hasQuery]);
+    return () => {
+      document.title = "Dead Poets Archives";
+    };
+  }, [query, hasQuery]);
 
   async function handleLoadMore() {
     if (!query || loadingMore) {
@@ -157,55 +161,36 @@ function SearchResults() {
 
         <section className="archive">
           {!hasQuery && (
-            <div className="status-message">
-              <p>
-                The archive is waiting.
-              </p>
-
-              <span>
-                Search by title or author to begin
-                exploring the collection.
-              </span>
-            </div>
+            <EmptyState
+              message="The archive is waiting."
+              detail="Search by title or author to begin exploring the collection."
+            />
           )}
 
           {hasQuery && loading && (
-            <div className="status-message">
-              <p>
-                Searching the archives...
-              </p>
-
-              <span>
-                Good books are worth waiting for.
-              </span>
-            </div>
+            <LoadingState
+              message="Searching the archives..."
+              detail="Good books are worth waiting for."
+            />
           )}
 
           {hasQuery &&
             error &&
             books.length === 0 && (
-              <div className="status-message error">
-                <p>{error}</p>
-
-                <span>
-                  Even the best archives have their
-                  quiet days.
-                </span>
-              </div>
+              <ErrorState
+                message={error}
+                detail="Even the best archives have their quiet days."
+              />
             )}
 
           {hasQuery &&
             !loading &&
             !error &&
             books.length === 0 && (
-              <div className="status-message">
-                <p>No books found.</p>
-
-                <span>
-                  Perhaps you haven't found the right
-                  words yet.
-                </span>
-              </div>
+              <EmptyState
+                message="No books found."
+                detail="Perhaps you haven't found the right words yet."
+              />
             )}
 
           {hasQuery &&

@@ -5,7 +5,9 @@ import {
   useParams,
 } from "react-router-dom";
 
-import Navbar from "../components/NavBar";
+import Navbar from "../components/Navbar";
+import LoadingState from "../components/LoadingState";
+import ErrorState from "../components/ErrorState";
 
 import { getBook } from "../services/openLibrary";
 
@@ -32,8 +34,7 @@ function BookDetails() {
         const decodedId =
           decodeURIComponent(id);
 
-        const data =
-          await getBook(decodedId);
+        const data = await getBook(decodedId);
 
         setBook(data);
       } catch (error) {
@@ -51,20 +52,20 @@ function BookDetails() {
   }, [id]);
 
   useEffect(() => {
-  if (book) {
-    const bookTitle =
-      searchBook?.title ||
-      book.title ||
-      "Untitled";
+    if (book) {
+      const bookTitle =
+        searchBook?.title ||
+        book.title ||
+        "Untitled";
 
-    document.title =
-      `Dead Poets Archives | ${bookTitle}`;
-  }
+      document.title =
+        `Dead Poets Archives | ${bookTitle}`;
+    }
 
-  return () => {
-    document.title = "Dead Poets Archives";
-  };
-}, [book, searchBook]);
+    return () => {
+      document.title = "Dead Poets Archives";
+    };
+  }, [book, searchBook]);
 
   const returnToArchive =
     searchBook?.searchQuery
@@ -79,15 +80,10 @@ function BookDetails() {
         <Navbar />
 
         <main className="book-details-page">
-          <div className="status-message">
-            <p>
-              Opening the archive record...
-            </p>
-
-            <span>
-              Some books deserve a slower reading.
-            </span>
-          </div>
+          <LoadingState
+            message="Opening the archive record..."
+            detail="Some books deserve a slower reading."
+          />
         </main>
       </div>
     );
@@ -99,16 +95,24 @@ function BookDetails() {
         <Navbar />
 
         <main className="book-details-page">
-          <div className="status-message error">
-            <p>
-              {error || "Book not found."}
-            </p>
+          <ErrorState
+            message={
+              error || "Book not found."
+            }
+            detail="We couldn't retrieve this record from the archives."
+          />
 
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "-60px",
+            }}
+          >
             <Link
               to={returnToArchive}
               className="back-link"
             >
-              ← Return to the archive
+              ← Return to Welton
             </Link>
           </div>
         </main>
@@ -133,20 +137,32 @@ function BookDetails() {
     searchBook?.editionCount ||
     0;
 
-  const coverBook = {
+  const normalizedBook = {
+    id:
+      searchBook?.id ||
+      decodeURIComponent(id),
+
+    title,
+
+    author,
+
+    publishYear,
+
+    editionCount,
+
     coverId:
       searchBook?.coverId ||
       null,
 
     coverEditionKey:
       searchBook?.coverEditionKey ||
-      book.covers?.[0] ||
       null,
   };
 
   const coverUrl =
-    searchBook?.coverId || searchBook?.coverEditionKey
-      ? getLargeCoverUrl(coverBook)
+    searchBook?.coverId ||
+    searchBook?.coverEditionKey
+      ? getLargeCoverUrl(normalizedBook)
       : book.covers?.[0]
         ? `https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`
         : null;
@@ -165,14 +181,16 @@ function BookDetails() {
 
       <main className="book-details-page">
         <div className="book-details-container">
+
           <Link
             to={returnToArchive}
             className="back-link"
           >
-            ← Return to the archive
+            ← Return to Welton
           </Link>
 
           <div className="book-details">
+
             <div className="book-details-cover">
               {coverUrl ? (
                 <img
@@ -185,6 +203,7 @@ function BookDetails() {
             </div>
 
             <div className="book-details-content">
+
               <p className="eyebrow">
                 ARCHIVE RECORD
               </p>
@@ -209,7 +228,9 @@ function BookDetails() {
 
               {description && (
                 <section>
-                  <h2>About this work</h2>
+                  <h2>
+                    About this work
+                  </h2>
 
                   <p className="book-details-description">
                     {description}
@@ -219,14 +240,18 @@ function BookDetails() {
 
               {subjects.length > 0 && (
                 <section className="book-details-subjects">
-                  <h2>Subjects</h2>
+                  <h2>
+                    Subjects
+                  </h2>
 
                   <div className="subject-tags">
-                    {subjects.map((subject) => (
-                      <span key={subject}>
-                        {subject}
-                      </span>
-                    ))}
+                    {subjects.map(
+                      (subject) => (
+                        <span key={subject}>
+                          {subject}
+                        </span>
+                      )
+                    )}
                   </div>
                 </section>
               )}
@@ -234,6 +259,7 @@ function BookDetails() {
               <p className="book-details-motto">
                 “No matter what anybody tells you, words and ideas can change the world.”
               </p>
+
             </div>
           </div>
         </div>
