@@ -494,7 +494,7 @@ img {
   padding: 130px 6%;
 
   display: grid;
-  grid-template-columns: 0.95fr 1fr;
+  grid-template-columns: 1fr 1fr;
 
   gap: 90px;
 
@@ -503,15 +503,27 @@ img {
 
 
 /* =========================
-   INTRO VISUAL
+   SHARED ARCHIVE VISUAL
 ========================= */
 
-.intro-visual {
+.intro-visual,
+.philosophy-visual {
+  width: 100%;
+  max-width: 560px;
+
   min-width: 0;
 }
 
-.intro-image {
+
+/* =========================
+   SHARED IMAGE FRAME
+========================= */
+
+.intro-image,
+.philosophy-image {
   position: relative;
+
+  width: 100%;
 
   padding: 10px;
 
@@ -523,7 +535,13 @@ img {
     0 14px 35px rgba(0, 0, 0, 0.28);
 }
 
-.intro-image::before {
+
+/* =========================
+   INNER GOLD FRAME
+========================= */
+
+.intro-image::before,
+.philosophy-image::before {
   content: "";
 
   position: absolute;
@@ -537,7 +555,13 @@ img {
   z-index: 2;
 }
 
-.intro-image::after {
+
+/* =========================
+   OUTER ARCHIVAL LINE
+========================= */
+
+.intro-image::after,
+.philosophy-image::after {
   content: "";
 
   position: absolute;
@@ -551,10 +575,18 @@ img {
   z-index: -1;
 }
 
-.intro-image img {
+
+/* =========================
+   SHARED IMAGE SIZE
+========================= */
+
+.intro-image img,
+.philosophy-image img {
   position: relative;
 
   z-index: 1;
+
+  display: block;
 
   width: 100%;
 
@@ -569,7 +601,13 @@ img {
     transform 0.4s ease;
 }
 
-.intro-image:hover img {
+
+/* =========================
+   IMAGE HOVER
+========================= */
+
+.intro-image:hover img,
+.philosophy-image:hover img {
   filter: saturate(0.9);
 
   transform: scale(1.015);
@@ -584,15 +622,21 @@ img {
   margin-top: 14px;
 
   display: flex;
+
   justify-content: space-between;
+
   gap: 20px;
 
   color: var(--text-muted);
 
   font-size: 0.55rem;
+
   font-weight: 500;
 
+  line-height: 1.5;
+
   letter-spacing: 0.12em;
+
   text-transform: uppercase;
 }
 
@@ -648,7 +692,6 @@ img {
 
   font-style: italic;
 }
-
 
 /* =========================================================
    HOME — CINEMATIC IMAGE
@@ -792,7 +835,8 @@ img {
   padding: 130px 6%;
 
   display: grid;
-  grid-template-columns: 1fr 0.95fr;
+
+  grid-template-columns: 1fr 1fr;
 
   gap: 90px;
 
@@ -829,80 +873,18 @@ img {
   margin-top: 32px;
 
   display: inline-flex;
+
   align-items: center;
+
   gap: 10px;
 
   color: var(--accent-gold);
 
   font-size: 0.7rem;
+
   font-weight: 600;
 
   letter-spacing: 0.18em;
-}
-
-.philosophy-image {
-  position: relative;
-
-  padding: 10px;
-
-  background: #211f1b;
-
-  border: 1px solid #4a4338;
-
-  box-shadow:
-    0 14px 35px rgba(0, 0, 0, 0.28);
-}
-
-.philosophy-image::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 4px;
-
-  border: 1px solid rgba(181, 154, 98, 0.42);
-
-  pointer-events: none;
-
-  z-index: 2;
-}
-
-.philosophy-image::after {
-  content: "";
-
-  position: absolute;
-
-  inset: -5px;
-
-  border: 1px solid rgba(58, 53, 45, 0.65);
-
-  pointer-events: none;
-
-  z-index: -1;
-}
-
-.philosophy-image img {
-  position: relative;
-
-  z-index: 1;
-
-  width: 100%;
-
-  aspect-ratio: 4 / 3;
-
-  object-fit: cover;
-
-  filter: saturate(0.75);
-
-  transition:
-    filter 0.4s ease,
-    transform 0.4s ease;
-}
-
-.philosophy-image:hover img {
-  filter: saturate(0.9);
-
-  transform: scale(1.015);
 }
 
 
@@ -1500,20 +1482,48 @@ img {
   }
 
   .archive-introduction {
-  grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
 
-  gap: 45px;
+    gap: 45px;
 
-  padding:
-    90px 20px;
-}
+    padding: 90px 20px;
+  }
 
-.image-caption {
-  flex-direction: column;
-  gap: 5px;
+  .archive-philosophy {
+    grid-template-columns: 1fr;
 
-  line-height: 1.6;
-}
+    gap: 45px;
+
+    padding: 90px 20px;
+  }
+
+  .intro-visual,
+  .philosophy-visual {
+    width: 100%;
+    max-width: none;
+  }
+
+  .intro-image,
+  .philosophy-image {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .intro-content,
+  .philosophy-content {
+    max-width: none;
+  }
+
+  .image-caption {
+    flex-direction: column;
+    gap: 5px;
+
+    line-height: 1.6;
+  }
+
+  .image-caption span:last-child {
+    text-align: left;
+  }
 
 .image-caption span:last-child {
   text-align: left;
@@ -1604,25 +1614,6 @@ img {
   .book-details-content h1 {
     font-size: 3.5rem;
   }
-}
-
-.archive-philosophy {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 45px;
-
-  padding:
-    90px 20px;
-}
-
-.philosophy-content {
-  max-width: none;
-}
-
-.philosophy-visual {
-  width: 100%;
 }
 
 /* =========================================================
