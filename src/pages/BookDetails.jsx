@@ -5,7 +5,7 @@ import {
   useParams,
 } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import LoadingState from "../components/LoadingState";
 import ErrorState from "../components/ErrorState";
 

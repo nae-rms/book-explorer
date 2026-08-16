@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import BookGrid from "../components/BookGrid";
 
 import LoadingState from "../components/LoadingState";
