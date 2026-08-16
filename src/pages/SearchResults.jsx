@@ -5,6 +5,7 @@ import Navbar from "../components/NavBar.jsx";
 import BookGrid from "../components/BookGrid.jsx";
 import { searchBooks } from "../services/openLibrary.js";
 
+
 const BOOKS_PER_PAGE = 24;
 
 function SearchResults() {
@@ -62,6 +63,20 @@ function SearchResults() {
 
     fetchInitialBooks();
   }, [query, hasQuery]);
+
+  useEffect(() => {
+  if (hasQuery) {
+    document.title =
+      `Dead Poets Archives | Search · ${query}`;
+  } else {
+    document.title =
+      "Dead Poets Archives | The Archive";
+  }
+
+  return () => {
+    document.title = "Dead Poets Archives";
+  };
+}, [query, hasQuery]);
 
   async function handleLoadMore() {
     if (!query || loadingMore) {

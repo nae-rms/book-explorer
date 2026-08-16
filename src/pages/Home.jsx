@@ -2,6 +2,7 @@ import { Feather, Library, Quote } from "lucide-react";
 
 import Navbar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
+import PageTitle from "../components/PageTitle";
 
 import weltonCourtyard from "../assets/welton-courtyard.jpg";
 import bedroomWriting from "../assets/bedroom-writing.jpg";
@@ -11,6 +12,8 @@ import soccerSunset from "../assets/soccer-sunset.jpg";
 function Home() {
   return (
     <div className="app">
+      <PageTitle />
+
       <Navbar />
 
       <main className="home">

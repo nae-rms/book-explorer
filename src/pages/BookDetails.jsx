@@ -50,6 +50,22 @@ function BookDetails() {
     fetchBook();
   }, [id]);
 
+  useEffect(() => {
+  if (book) {
+    const bookTitle =
+      searchBook?.title ||
+      book.title ||
+      "Untitled";
+
+    document.title =
+      `Dead Poets Archives | ${bookTitle}`;
+  }
+
+  return () => {
+    document.title = "Dead Poets Archives";
+  };
+}, [book, searchBook]);
+
   const returnToArchive =
     searchBook?.searchQuery
       ? `/search?q=${encodeURIComponent(
