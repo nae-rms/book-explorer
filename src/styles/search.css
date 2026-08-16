@@ -1,0 +1,352 @@
+/* =========================================================
+   RESULTS PAGE
+========================================================= */
+
+.results-page {
+  min-height: calc(100vh - 76px);
+}
+
+.results-header {
+  max-width: var(--wide-content-max);
+
+  margin: 0 auto;
+
+  padding: 42px var(--page-gutter) 32px;
+}
+
+.back-link {
+  display: inline-block;
+
+  margin-bottom: 32px;
+
+  color: var(--text-muted);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--text-primary);
+}
+
+.results-header .eyebrow {
+  margin-bottom: 10px;
+
+  font-size: 0.62rem;
+}
+
+.results-header h1 {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(3rem, 5vw, 4.7rem);
+
+  font-weight: 500;
+
+  line-height: 0.92;
+}
+
+.results-meta {
+  margin-top: 14px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.72rem;
+
+  letter-spacing: 0.04em;
+}
+
+.results-meta strong {
+  color: var(--text-primary);
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   RESULTS / ARCHIVE
+========================================================= */
+
+.archive {
+  max-width: var(--wide-content-max);
+
+  margin: 0 auto;
+
+  padding: 32px var(--page-gutter) 100px;
+
+  border-top: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   BOOK GRID
+========================================================= */
+
+.book-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(180px, 1fr));
+
+  gap: 44px 36px;
+}
+
+
+/* =========================================================
+   BOOK CARD
+========================================================= */
+
+.book-card {
+  min-width: 0;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+
+/* =========================================================
+   BOOK COVER
+========================================================= */
+
+.book-cover {
+  width: min(100%, 175px);
+
+  aspect-ratio: 2 / 3;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      #332f28,
+      #201e1a
+    );
+
+  color: var(--text-muted);
+
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.25);
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.book-card:hover .book-cover {
+  border-color: var(--accent-gold);
+
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.book-cover span {
+  padding: 0 10px;
+
+  text-align: center;
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BOOK INFO
+========================================================= */
+
+.book-info {
+  max-width: 175px;
+
+  margin: 0 auto;
+
+  padding-top: 15px;
+
+  text-align: left;
+}
+
+.book-info h3 {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.35rem;
+  font-weight: 600;
+
+  line-height: 1.1;
+}
+
+.book-info p {
+  margin-top: 6px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.75rem;
+
+  line-height: 1.4;
+}
+
+.book-info span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: var(--accent-gold);
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.1em;
+}
+
+
+/* =========================================================
+   LOAD MORE
+========================================================= */
+
+.load-more-container {
+  margin-top: 70px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.load-more-button {
+  min-width: 190px;
+  height: 48px;
+
+  padding: 0 24px;
+
+  border: 1px solid var(--border);
+
+  background: transparent;
+  color: var(--text-primary);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.load-more-button:hover:not(:disabled) {
+  border-color: var(--accent-gold);
+
+  background: var(--bg-secondary);
+
+  color: var(--accent-gold);
+}
+
+.load-more-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+}
+
+.load-more-error {
+  margin-top: 14px;
+
+  color: #c26d70;
+
+  font-size: 0.75rem;
+}
+
+.archive-end {
+  margin-top: 70px;
+
+  color: var(--text-muted);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.1rem;
+
+  font-style: italic;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+  .results-header {
+    padding:
+      40px 20px
+      30px;
+  }
+
+  .back-link {
+    margin-bottom: 28px;
+  }
+
+  .results-header h1 {
+    font-size: 3rem;
+  }
+
+  .results-meta {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 7px;
+  }
+
+  .archive {
+    padding:
+      35px 20px
+      90px;
+  }
+
+  .book-grid {
+    grid-template-columns:
+      repeat(2, minmax(140px, 1fr));
+
+    gap: 30px 20px;
+  }
+
+  .book-cover {
+    width: min(100%, 150px);
+  }
+
+  .book-info {
+    max-width: 150px;
+  }
+}

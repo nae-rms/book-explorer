@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+
+/* =========================================================
+   DESIGN SYSTEM
+========================================================= */
+
+:root {
+  --bg-primary: #171614;
+  --bg-secondary: #211f1b;
+  --bg-card: #28251f;
+
+  --text-primary: #e8dfcc;
+  --text-secondary: #a9a092;
+  --text-muted: #716a60;
+
+  --accent-red: #8b1e24;
+  --accent-red-hover: #a0252c;
+  --accent-gold: #b59a62;
+
+  --border: #3a352d;
+
+  --page-gutter: 6%;
+  --footer-gutter: 3%;
+
+  --content-max: 1250px;
+  --wide-content-max: 1500px;
+
+  font-family: "Inter", sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   GLOBAL TYPOGRAPHY
+========================================================= */
+
+.eyebrow {
+  margin-bottom: 16px;
+
+  color: var(--accent-gold);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}

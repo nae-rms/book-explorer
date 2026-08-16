@@ -1,0 +1,61 @@
+/* =========================================================
+   LOADING / ERROR / EMPTY STATES
+========================================================= */
+
+.status-message {
+  min-height: 280px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.status-message p {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
+.status-message span {
+  max-width: 450px;
+
+  margin-top: 10px;
+
+  color: var(--text-muted);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.05rem;
+
+  font-style: italic;
+}
+
+.status-message.error p {
+  color: #c26d70;
+}
+
+
+/* =========================================================
+   LOADING ANIMATION
+========================================================= */
+
+.status-message p {
+  animation:
+    archivePulse 1.6s ease-in-out infinite;
+}
+
+@keyframes archivePulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
