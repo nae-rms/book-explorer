@@ -181,61 +181,71 @@ function Home() {
       </main>
 
       {/* FOOTER */}
-      <footer className="site-footer">
-        <div className="footer-inner">
-          <div className="footer-brand">
-            <div className="footer-logo">
-              <span
-                className="footer-mark"
-                aria-hidden="true"
-              >
-                ✦
-              </span>
+<footer className="site-footer">
+  <div className="footer-inner">
+    <div className="footer-brand">
+      <div className="footer-logo">
+        <span
+          className="footer-mark"
+          aria-hidden="true"
+        >
+          ✦
+        </span>
 
-              <span>Dead Poets Archives</span>
-            </div>
+        <span>
+          Dead Poets Archives
+        </span>
+      </div>
 
-            <p>
-              A literary archive for books worth
-              remembering.
-            </p>
-          </div>
+      <p>
+        A literary archive for books worth
+        remembering.
+      </p>
+    </div>
 
-          <div className="footer-column">
-            <span className="footer-heading">
-              ARCHIVE
-            </span>
+    <div className="footer-column">
+      <span className="footer-heading">
+        ARCHIVE
+      </span>
 
-            <a href="/">
-              Search
-            </a>
+      <a href="/">
+        Search
+      </a>
 
-            <a href="/search">
-              Collection
-            </a>
-          </div>
+      <a href="/search">
+        Collection
+      </a>
+    </div>
 
-          <div className="footer-column">
-            <span className="footer-heading">
-              ABOUT
-            </span>
+    <div className="footer-column">
+      <span className="footer-heading">
+        ABOUT
+      </span>
 
-            <span>Welton Academy</span>
+      <span>
+        Welton Academy
+      </span>
 
-            <span>Private Collection</span>
-          </div>
-        </div>
+      <span>
+        Private Collection
+      </span>
+    </div>
+  </div>
 
-        <div className="footer-bottom">
-          <span>
-            BOOK DATA · OPEN LIBRARY
-          </span>
+  <div className="footer-bottom">
+    <span>
+      © 2026 Dead Poets Archives
+    </span>
 
-          <span>
-            CARPE DIEM
-          </span>
-        </div>
-      </footer>
+    <span>
+      BOOK DATA · OPEN LIBRARY
+    </span>
+
+    <span>
+      CARPE DIEM
+    </span>
+  </div>
+</footer>
     </div>
   );
 }
