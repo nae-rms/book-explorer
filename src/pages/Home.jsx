@@ -152,12 +152,8 @@ function Home() {
             </p>
 
             <div className="philosophy-motto">
-              <Feather
-                size={18}
-                strokeWidth={1.2}
-              />
 
-              <span>CARPE DIEM</span>
+              <span> Is it better to speak or to die?</span>
             </div>
           </div>
 

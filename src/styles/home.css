@@ -634,20 +634,15 @@
 }
 
 .philosophy-motto {
-  margin-top: 32px;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 10px;
+ margin-top: 22px;
 
   color: var(--accent-gold);
 
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-family: "Cormorant Garamond", serif;
 
-  letter-spacing: 0.18em;
+  font-size: 1.1rem;
+
+  font-style: italic;
 }
 
 
